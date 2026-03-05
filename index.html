@@ -3,45 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Transporte Fretado</title>
+    <title>Vitrine de Transportes</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background-color: #f4f4f9; margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
-        .card { background: white; width: 90%; max-width: 380px; border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); overflow: hidden; }
-        .swiper { width: 100%; height: 300px; background-color: #eee; }
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f0f2f5; margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; gap: 30px; }
+        .card { background: white; width: 100%; max-width: 400px; border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); overflow: hidden; }
+        .swiper { width: 100%; height: 280px; background-color: #eee; }
         .swiper-slide img { width: 100%; height: 100%; object-fit: cover; }
-        .content { padding: 20px; text-align: center; }
-        h2 { margin: 0 0 10px; color: #333; }
-        .price { font-size: 1.3rem; color: #27ae60; font-weight: bold; margin-bottom: 15px; }
-        .btn-whatsapp { display: block; background-color: #25d366; color: white; padding: 15px; text-decoration: none; border-radius: 10px; font-weight: bold; transition: 0.3s; }
+        .content { padding: 15px; text-align: center; }
+        h2 { margin: 0 0 5px; color: #333; font-size: 1.4rem; }
+        .price { color: #27ae60; font-weight: bold; margin-bottom: 10px; }
+        .btn-whatsapp { display: block; background-color: #25d366; color: white; padding: 12px; text-decoration: none; border-radius: 8px; font-weight: bold; transition: 0.3s; }
         .btn-whatsapp:hover { background-color: #128c7e; }
+        .swiper-pagination-bullet-active { background: #25d366; }
     </style>
 </head>
 <body>
 
     <div class="card">
-        <div class="swiper">
+        <div class="swiper swiper-foto">
             <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <img src="foto1.png" alt="Transporte Fretado">
-                </div>
+                <div class="swiper-slide"><img src="foto1.png" alt="Foto 1"></div>
+                <div class="swiper-slide"><img src="foto2.png" alt="Foto 2"></div>
+                <div class="swiper-slide"><img src="foto3.png" alt="Foto 3"></div>
             </div>
             <div class="swiper-pagination"></div>
         </div>
-
         <div class="content">
-            <h2>Transporte Fretado</h2>
-            <div class="price">Consulte Orçamento</div>
-            <p style="color: #666; font-size: 0.9rem; margin-bottom: 20px;">
-                Serviço especializado de transporte com conforto e segurança.
-            </p>
+            <h2>Opção A (Foto)</h2>
+            <p class="price">Consulte Valor</p>
+            <a href="https://wa.me/5500000000000" class="btn-whatsapp">Entre em Contato</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="swiper swiper-photo">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="photo1.png" alt="Photo 1"></div>
+                <div class="swiper-slide"><img src="photo2.png" alt="Photo 2"></div>
+                <div class="swiper-slide"><img src="photo3.png" alt="Photo 3"></div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+        <div class="content">
+            <h2>Opção B (Photo)</h2>
+            <p class="price">Consulte Valor</p>
+            <a href="https://wa.me/5500000000000" class="btn-whatsapp">Entre em Contato</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="swiper swiper-picture">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="picture1.png" alt="Picture 1"></div>
+                <div class="swiper-slide"><img src="picture2.png" alt="Picture 2"></div>
+                <div class="swiper-slide"><img src="picture3.png" alt="Picture 3"></div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+        <div class="content">
+            <h2>Opção C (Picture)</h2>
+            <p class="price">Consulte Valor</p>
             <a href="https://wa.me/5500000000000" class="btn-whatsapp">Entre em Contato</a>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        const swiper = new Swiper('.swiper', { loop: true, pagination: { el: '.swiper-pagination', clickable: true } });
+        // Inicializa cada carrossel separadamente
+        new Swiper('.swiper-foto', { loop: true, pagination: { el: '.swiper-pagination', clickable: true } });
+        new Swiper('.swiper-photo', { loop: true, pagination: { el: '.swiper-pagination', clickable: true } });
+        new Swiper('.swiper-picture', { loop: true, pagination: { el: '.swiper-pagination', clickable: true } });
     </script>
 </body>
 </html>
