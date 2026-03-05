@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vitrine do Brener</title>
+    <title>Vitrine de Camisas - Brener</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <style>
         body { 
@@ -13,7 +13,6 @@
             padding: 20px; 
         }
 
-        /* Container que organiza os cards lado a lado no PC */
         .container {
             display: flex;
             flex-wrap: wrap; 
@@ -36,15 +35,34 @@
 
         .card:hover { transform: translateY(-5px); }
 
-        /* Tamanho das imagens do carrossel */
-        .swiper { width: 100%; height: 260px; background-color: #ddd; }
+        .swiper { width: 100%; height: 320px; background-color: #ddd; }
         .swiper-slide img { width: 100%; height: 100%; object-fit: cover; }
         
         .content { padding: 20px; text-align: center; }
-        h2 { margin: 0 0 10px; color: #333; font-size: 1.3rem; }
-        .price { color: #27ae60; font-weight: bold; font-size: 1.2rem; margin-bottom: 15px; }
+        h2 { margin: 0 0 5px; color: #333; font-size: 1.3rem; }
         
-        /* Botão Personalizado */
+        .modelo-info { 
+            color: #888; 
+            font-size: 0.9rem; 
+            margin-bottom: 10px; 
+            font-weight: 500;
+        }
+
+        .price-area { margin-bottom: 15px; }
+        
+        .old-price { 
+            color: #999; 
+            text-decoration: line-through; 
+            font-size: 1rem; 
+            margin-right: 8px;
+        }
+
+        .new-price { 
+            color: #27ae60; 
+            font-weight: bold; 
+            font-size: 1.4rem; 
+        }
+        
         .btn-whatsapp { 
             display: block; 
             background-color: #25d366; 
@@ -58,7 +76,6 @@
         }
         .btn-whatsapp:hover { background-color: #128c7e; }
 
-        /* Bolinhas do carrossel */
         .swiper-pagination-bullet-active { background: #25d366; }
     </style>
 </head>
@@ -69,16 +86,20 @@
         <div class="card">
             <div class="swiper swiper-a">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide"><img src="foto1.png" alt="Veículo A1"></div>
-                    <div class="swiper-slide"><img src="foto2.png" alt="Veículo A2"></div>
-                    <div class="swiper-slide"><img src="foto3.png" alt="Veículo A3"></div>
+                    <div class="swiper-slide"><img src="foto1.png" alt="Camisa A1"></div>
+                    <div class="swiper-slide"><img src="foto2.png" alt="Camisa A2"></div>
+                    <div class="swiper-slide"><img src="foto3.png" alt="Camisa A3"></div>
                 </div>
                 <div class="swiper-pagination"></div>
             </div>
             <div class="content">
-                <h2>Transporte Modelo A</h2>
-                <p class="price">Orçamento sob consulta</p>
-                <a href="https://wa.me/5591993249580?text=Olá Brener, gostaria de saber mais sobre a Opção A." class="btn-whatsapp">
+                <h2>Camisa Opção A</h2>
+                <p class="modelo-info">Modelo Torcedor</p>
+                <div class="price-area">
+                    <span class="old-price">R$ 189,00</span>
+                    <span class="new-price">R$ 169,00</span>
+                </div>
+                <a href="https://wa.me/5591993249580?text=Olá Brener, tenho interesse na Camisa Opção A (Modelo Torcedor)." class="btn-whatsapp">
                     Entre em contato com o Brener
                 </a>
             </div>
@@ -87,16 +108,20 @@
         <div class="card">
             <div class="swiper swiper-b">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide"><img src="photo1.png" alt="Veículo B1"></div>
-                    <div class="swiper-slide"><img src="photo2.png" alt="Veículo B2"></div>
-                    <div class="swiper-slide"><img src="photo3.png" alt="Veículo B3"></div>
+                    <div class="swiper-slide"><img src="photo1.png" alt="Camisa B1"></div>
+                    <div class="swiper-slide"><img src="photo2.png" alt="Camisa B2"></div>
+                    <div class="swiper-slide"><img src="photo3.png" alt="Camisa B3"></div>
                 </div>
                 <div class="swiper-pagination"></div>
             </div>
             <div class="content">
-                <h2>Transporte Modelo B</h2>
-                <p class="price">Orçamento sob consulta</p>
-                <a href="https://wa.me/5591993249580?text=Olá Brener, gostaria de saber mais sobre a Opção B." class="btn-whatsapp">
+                <h2>Camisa Opção B</h2>
+                <p class="modelo-info">Modelo Torcedor</p>
+                <div class="price-area">
+                    <span class="old-price">R$ 189,00</span>
+                    <span class="new-price">R$ 169,00</span>
+                </div>
+                <a href="https://wa.me/5591993249580?text=Olá Brener, tenho interesse na Camisa Opção B (Modelo Torcedor)." class="btn-whatsapp">
                     Entre em contato com o Brener
                 </a>
             </div>
@@ -105,16 +130,20 @@
         <div class="card">
             <div class="swiper swiper-c">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide"><img src="picture1.png" alt="Veículo C1"></div>
-                    <div class="swiper-slide"><img src="picture2.png" alt="Veículo C2"></div>
-                    <div class="swiper-slide"><img src="picture3.png" alt="Veículo C3"></div>
+                    <div class="swiper-slide"><img src="picture1.png" alt="Camisa C1"></div>
+                    <div class="swiper-slide"><img src="picture2.png" alt="Camisa C2"></div>
+                    <div class="swiper-slide"><img src="picture3.png" alt="Camisa C3"></div>
                 </div>
                 <div class="swiper-pagination"></div>
             </div>
             <div class="content">
-                <h2>Transporte Modelo C</h2>
-                <p class="price">Orçamento sob consulta</p>
-                <a href="https://wa.me/5591993249580?text=Olá Brener, gostaria de saber mais sobre a Opção C." class="btn-whatsapp">
+                <h2>Camisa Opção C</h2>
+                <p class="modelo-info">Modelo Torcedor</p>
+                <div class="price-area">
+                    <span class="old-price">R$ 189,00</span>
+                    <span class="new-price">R$ 169,00</span>
+                </div>
+                <a href="https://wa.me/5591993249580?text=Olá Brener, tenho interesse na Camisa Opção C (Modelo Torcedor)." class="btn-whatsapp">
                     Entre em contato com o Brener
                 </a>
             </div>
