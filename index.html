@@ -4,87 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Transporte Fretado</title>
-    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f4f9;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        .card {
-            background: white;
-            width: 90%;
-            max-width: 380px;
-            border-radius: 15px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-            overflow: hidden;
-        }
-
-        /* Área do Carrossel */
-        .swiper {
-            width: 100%;
-            height: 300px;
-            background-color: #eee;
-        }
-
-        .swiper-slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .content {
-            padding: 20px;
-            text-align: center;
-        }
-
-        h2 {
-            margin: 0 0 10px;
-            color: #333;
-            font-size: 1.5rem;
-        }
-
-        .price {
-            font-size: 1.3rem;
-            color: #27ae60;
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
-
-        .description {
-            font-size: 0.95rem;
-            color: #666;
-            margin-bottom: 25px;
-            line-height: 1.5;
-        }
-
-        .btn-whatsapp {
-            display: block;
-            background-color: #25d366;
-            color: white;
-            padding: 15px;
-            text-decoration: none;
-            border-radius: 10px;
-            font-weight: bold;
-            font-size: 1.1rem;
-            transition: background 0.3s ease;
-        }
-
-        .btn-whatsapp:hover {
-            background-color: #128c7e;
-        }
-
-        /* Cor das bolinhas do carrossel */
-        .swiper-pagination-bullet-active {
-            background: #25d366;
-        }
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f4f4f9; margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .card { background: white; width: 90%; max-width: 380px; border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); overflow: hidden; }
+        .swiper { width: 100%; height: 300px; background-color: #eee; }
+        .swiper-slide img { width: 100%; height: 100%; object-fit: cover; }
+        .content { padding: 20px; text-align: center; }
+        h2 { margin: 0 0 10px; color: #333; }
+        .price { font-size: 1.3rem; color: #27ae60; font-weight: bold; margin-bottom: 15px; }
+        .btn-whatsapp { display: block; background-color: #25d366; color: white; padding: 15px; text-decoration: none; border-radius: 10px; font-weight: bold; transition: 0.3s; }
+        .btn-whatsapp:hover { background-color: #128c7e; }
     </style>
 </head>
 <body>
@@ -92,39 +22,26 @@
     <div class="card">
         <div class="swiper">
             <div class="swiper-wrapper">
-                
                 <div class="swiper-slide">
-                    <img src="foto1" alt="Foto do Veículo 1">
+                    <img src="foto1.png" alt="Transporte Fretado">
                 </div>
-
-                </div>
+            </div>
             <div class="swiper-pagination"></div>
         </div>
 
         <div class="content">
             <h2>Transporte Fretado</h2>
             <div class="price">Consulte Orçamento</div>
-            
-            <p class="description">
-                Oferecemos transporte fretado com pontualidade, segurança e o melhor custo-benefício da região.
+            <p style="color: #666; font-size: 0.9rem; margin-bottom: 20px;">
+                Serviço especializado de transporte com conforto e segurança.
             </p>
-            
-            <a href="https://wa.me/5500000000000?text=Olá! Gostaria de um orçamento para transporte fretado." class="btn-whatsapp">
-                Entre em Contato
-            </a>
+            <a href="https://wa.me/5500000000000" class="btn-whatsapp">Entre em Contato</a>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        const swiper = new Swiper('.swiper', {
-            loop: true, // Faz as fotos voltarem ao início
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-        });
+        const swiper = new Swiper('.swiper', { loop: true, pagination: { el: '.swiper-pagination', clickable: true } });
     </script>
-
 </body>
 </html>
