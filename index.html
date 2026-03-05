@@ -3,101 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página de Produto</title>
+    <title>Meu Produto - Galeria</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f4f9;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-        }
-
-        .card {
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            overflow: hidden;
-            width: 350px;
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-        }
-
-        .product-image {
+        body { font-family: sans-serif; background: #f0f2f5; display: flex; justify-content: center; padding: 20px; }
+        
+        .product-card {
+            background: #fff;
             width: 100%;
-            height: 250px;
-            background-color: #ddd;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-style: italic;
-            color: #666;
+            max-width: 400px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
-        .content {
-            padding: 20px;
-        }
+        /* Ajuste do tamanho das fotos */
+        .swiper { width: 100%; height: 350px; }
+        .swiper-slide img { width: 100%; height: 100%; object-fit: cover; }
 
-        h2 {
-            margin: 10px 0;
-            color: #333;
-        }
-
-        .price {
-            font-size: 1.5rem;
-            color: #27ae60;
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
-
-        .description {
-            font-size: 0.9rem;
-            color: #777;
-            margin-bottom: 25px;
-            line-height: 1.4;
-        }
-
-        .btn-contact {
-            display: inline-block;
-            background-color: #25d366; /* Cor do WhatsApp */
+        .info { padding: 20px; text-align: center; }
+        .price { font-size: 24px; color: #2ecc71; font-weight: bold; margin: 10px 0; }
+        
+        .btn-whatsapp {
+            display: block;
+            background: #25d366;
             color: white;
-            padding: 12px 25px;
+            padding: 15px;
             text-decoration: none;
-            border-radius: 30px;
+            border-radius: 8px;
             font-weight: bold;
-            transition: background 0.3s;
-        }
-
-        .btn-contact:hover {
-            background-color: #128c7e;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
 
-    <div class="card">
-        <div class="product-image">
-            <img src="https://via.placeholder.com/350x250" alt="Produto" style="width:100%; height:100%; object-fit:cover;">
+<div class="product-card">
+    <div class="swiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="foto1.jpg" alt="Foto 1"></div>
+            <div class="swiper-slide"><img src="foto2.jpg" alt="Foto 2"></div>
+            <div class="swiper-slide"><img src="foto3.jpg" alt="Foto 3"></div>
         </div>
-
-        <div class="content">
-            <h2>Nome do Produto</h2>
-            <div class="price">R$ 299,90</div>
-            <p class="description">
-                Uma breve descrição das qualidades incríveis deste item. Ideal para quem busca qualidade e exclusividade.
-            </p>
-            
-            <a href="https://wa.me/5500000000000?text=Olá! Tenho interesse no produto." class="btn-contact">
-                Entre em Contato
-            </a>
-        </div>
+        <div class="swiper-pagination"></div>
     </div>
+
+    <div class="info">
+        <h2>Nome do seu Produto</h2>
+        <div class="price">R$ 150,00</div>
+        <p>Descrição detalhada do que você está vendendo.</p>
+        
+        <a href="https://wa.me/SEUNUMERO" class="btn-whatsapp">Entre em Contato</a>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+    const swiper = new Swiper('.swiper', {
+        pagination: { el: '.swiper-pagination', clickable: true },
+        loop: true,
+    });
+</script>
 
 </body>
 </html>
