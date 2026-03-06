@@ -8,8 +8,18 @@
     <style>
         body { font-family: 'Segoe UI', sans-serif; background-color: #f0f2f5; margin: 0; padding: 0; }
         
-        header { background-color: #fff; padding: 20px; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        header h1 { margin: 0; color: #1a1a1a; font-size: 2rem; text-transform: uppercase; letter-spacing: 2px; }
+        /* Cabeçalho com Logo */
+        header { 
+            background-color: #fff; 
+            padding: 15px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 15px; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1); 
+        }
+        header img { height: 50px; width: auto; } /* Ajuste a altura da logo aqui */
+        header h1 { margin: 0; color: #1a1a1a; font-size: 1.8rem; text-transform: uppercase; letter-spacing: 1px; }
 
         /* Barra de Pesquisa */
         .search-container { max-width: 600px; margin: 20px auto; padding: 0 15px; }
@@ -22,7 +32,7 @@
         
         .section-title { 
             display: flex; align-items: center; gap: 10px; margin: 40px 0 20px 0; 
-            color: #333; font-size: 1.6rem; font-weight: bold;
+            color: #333; font-size: 1.5rem; font-weight: bold;
         }
 
         .product-grid { display: flex; flex-wrap: nowrap; gap: 20px; }
@@ -39,7 +49,6 @@
         }
 
         .card { background: white; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); overflow: hidden; }
-        /* Esconder card na pesquisa */
         .card.hidden { display: none !important; }
 
         .swiper-images { width: 100%; height: 320px; background-color: #eee; }
@@ -58,7 +67,7 @@
             text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 0.9rem;
         }
 
-        /* Rodapé Corrigido (Não sobrepõe mais) */
+        /* Rodapé Corrigido */
         footer {
             background-color: #1a1a1a;
             color: white;
@@ -72,19 +81,18 @@
 <body>
 
     <header>
+        <img src="logo1.png" alt="Logo Club da Bola">
         <h1>Club da Bola</h1>
     </header>
 
     <div class="search-container">
-        <input type="text" id="searchInput" placeholder="Pesquise seu time (ex: Vasco, Real Madrid...)" onkeyup="filterTeams()">
+        <input type="text" id="searchInput" placeholder="Pesquise seu time..." onkeyup="filterTeams()">
     </div>
 
     <div class="main-container">
-        
         <div class="section-title">🇧🇷 Brasileirão</div>
         <div class="swiper swiper-produtos">
             <div class="swiper-wrapper product-grid">
-                
                 <div class="swiper-slide card" data-name="vasco">
                     <div class="swiper swiper-images">
                         <div class="swiper-wrapper">
@@ -97,91 +105,29 @@
                         <h2>Vasco 💢</h2>
                         <p class="modelo-info">Modelo Torcedor</p>
                         <div class="price-area"><span class="old-price">R$ 189</span><span class="new-price">R$ 169,00</span></div>
-                        <a href="https://wa.me/5591993249580?text=Quero a do Vasco" class="btn-whatsapp">Entre em contato</a>
-                    </div>
-                </div>
-
-                <div class="swiper-slide card" data-name="flamengo">
-                    <div class="swiper swiper-images">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide"><img src="Flamengo/foto1.png" alt="Fla 1"></div>
-                            <div class="swiper-slide"><img src="Flamengo/foto2.png" alt="Fla 2"></div>
-                        </div>
-                        <div class="swiper-pagination"></div>
-                    </div>
-                    <div class="content">
-                        <h2>Flamengo 🔴⚫</h2>
-                        <p class="modelo-info">Modelo Torcedor</p>
-                        <div class="price-area"><span class="old-price">R$ 189</span><span class="new-price">R$ 169,00</span></div>
-                        <a href="https://wa.me/5591993249580?text=Quero a do Flamengo" class="btn-whatsapp">Entre em contato</a>
+                        <a href="https://wa.me/5591993249580?text=Olá Brener, quero a do Vasco" class="btn-whatsapp">Entre em contato</a>
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="section-title">🇪🇸 La Liga</div>
-        <div class="swiper swiper-produtos">
-            <div class="swiper-wrapper product-grid">
-                
-                <div class="swiper-slide card" data-name="real madrid">
-                    <div class="swiper swiper-images">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide"><img src="Real Madrid/foto1.png" alt="Real 1"></div>
-                            <div class="swiper-slide"><img src="Real Madrid/foto2.png" alt="Real 2"></div>
-                        </div>
-                        <div class="swiper-pagination"></div>
-                    </div>
-                    <div class="content">
-                        <h2>Real Madrid ⚪</h2>
-                        <p class="modelo-info">Modelo Torcedor</p>
-                        <div class="price-area"><span class="old-price">R$ 189</span><span class="new-price">R$ 169,00</span></div>
-                        <a href="https://wa.me/5591993249580?text=Quero a do Real Madrid" class="btn-whatsapp">Entre em contato</a>
-                    </div>
-                </div>
-
-                <div class="swiper-slide card" data-name="barcelona">
-                    <div class="swiper swiper-images">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide"><img src="Barcelona/foto1.png" alt="Barça 1"></div>
-                            <div class="swiper-slide"><img src="Barcelona/foto2.png" alt="Barça 2"></div>
-                        </div>
-                        <div class="swiper-pagination"></div>
-                    </div>
-                    <div class="content">
-                        <h2>Barcelona 🔵🔴</h2>
-                        <p class="modelo-info">Modelo Torcedor</p>
-                        <div class="price-area"><span class="old-price">R$ 189</span><span class="new-price">R$ 169,00</span></div>
-                        <a href="https://wa.me/5591993249580?text=Quero a do Barcelona" class="btn-whatsapp">Entre em contato</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
     </div>
 
     <footer>
         Siga-nos no Instagram: <a href="https://instagram.com/club_dabola" target="_blank">@club_dabola</a>
-        <p style="font-size: 0.8rem; margin-top: 10px; color: #666;">© 2026 Club da Bola</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        // Iniciar Carrosséis
         new Swiper('.swiper-images', { loop: true, pagination: { el: '.swiper-pagination', clickable: true } });
         new Swiper('.swiper-produtos', { slidesPerView: 'auto', spaceBetween: 20, breakpoints: { 768: { enabled: false } } });
 
-        // Função de Pesquisa
         function filterTeams() {
             let input = document.getElementById('searchInput').value.toLowerCase();
             let cards = document.querySelectorAll('.card');
-            
             cards.forEach(card => {
                 let teamName = card.getAttribute('data-name');
-                if (teamName.includes(input)) {
-                    card.classList.remove('hidden');
-                } else {
-                    card.classList.add('hidden');
-                }
+                if (teamName.includes(input)) { card.classList.remove('hidden'); } 
+                else { card.classList.add('hidden'); }
             });
         }
     </script>
