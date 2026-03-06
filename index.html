@@ -6,67 +6,39 @@
     <title>Vitrine Brener - Modelo Torcedor</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <style>
-        body { 
-            font-family: 'Segoe UI', sans-serif; 
-            background-color: #f0f2f5; 
-            margin: 0; 
-            padding: 15px; 
-        }
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f0f2f5; margin: 0; padding: 15px; }
+        .main-container { max-width: 1200px; margin: 0 auto; }
 
-        /* Container Principal */
-        .main-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        /* Estilo para Computador: 3 colunas */
-        @media (min-width: 768px) {
-            .product-grid {
-                display: flex;
-                justify-content: center;
-                gap: 20px;
-            }
-            .card { flex: 1; max-width: 360px; }
-        }
-
-        /* Estilo para Celular: Carrossel de Cards */
+        /* Responsividade: Grid no PC, Carrossel no Celular */
+        .product-grid { display: flex; flex-wrap: nowrap; gap: 20px; }
+        
         @media (max-width: 767px) {
-            .product-grid { display: block; }
-            .card { width: 85vw; margin-bottom: 0; }
+            .swiper-produtos { padding-bottom: 30px; }
+            .card { width: 85vw; }
         }
 
-        .card { 
-            background: white; 
-            border-radius: 15px; 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08); 
-            overflow: hidden;
-            height: 100%;
+        @media (min-width: 768px) {
+            .product-grid { justify-content: center; flex-wrap: wrap; }
+            .card { flex: 0 0 300px; }
+            .swiper-produtos { overflow: visible; }
         }
 
-        /* Imagens das Camisas */
-        .swiper-images { width: 100%; height: 280px; background-color: #eee; }
+        .card { background: white; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); overflow: hidden; }
+        .swiper-images { width: 100%; height: 300px; background-color: #eee; }
         .swiper-images img { width: 100%; height: 100%; object-fit: cover; }
         
         .content { padding: 15px; text-align: center; }
-        h2 { margin: 0 0 5px; color: #333; font-size: 1.1rem; }
-        .modelo-info { color: #888; font-size: 0.85rem; margin-bottom: 10px; }
+        h2 { margin: 0; color: #333; font-size: 1.2rem; }
+        .modelo-info { color: #888; font-size: 0.85rem; margin: 5px 0 10px; }
         
         .price-area { margin-bottom: 15px; }
         .old-price { color: #999; text-decoration: line-through; font-size: 0.9rem; margin-right: 5px; }
-        .new-price { color: #27ae60; font-weight: bold; font-size: 1.2rem; }
+        .new-price { color: #27ae60; font-weight: bold; font-size: 1.3rem; }
         
         .btn-whatsapp { 
-            display: block; 
-            background-color: #25d366; 
-            color: white; 
-            padding: 12px; 
-            text-decoration: none; 
-            border-radius: 8px; 
-            font-weight: bold; 
-            font-size: 0.9rem;
+            display: block; background-color: #25d366; color: white; padding: 12px; 
+            text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 0.9rem;
         }
-
-        .swiper-pagination-bullet-active { background: #25d366; }
     </style>
 </head>
 <body>
@@ -78,60 +50,76 @@
                 <div class="swiper-slide card">
                     <div class="swiper swiper-images">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide"><img src="foto1.png" alt="Camisa A1"></div>
-                            <div class="swiper-slide"><img src="foto2.png" alt="Camisa A2"></div>
-                            <div class="swiper-slide"><img src="foto3.png" alt="Camisa A3"></div>
+                            <div class="swiper-slide"><img src="Vasco/foto1" alt="Vasco 1"></div>
+                            <div class="swiper-slide"><img src="Vasco/foto2" alt="Vasco 2"></div>
                         </div>
                         <div class="swiper-pagination"></div>
                     </div>
                     <div class="content">
-                        <h2>Camisa Opção A</h2>
+                        <h2>Vasco</h2>
                         <p class="modelo-info">Modelo Torcedor</p>
                         <div class="price-area">
                             <span class="old-price">R$ 189,00</span>
                             <span class="new-price">R$ 169,00</span>
                         </div>
-                        <a href="https://wa.me/5591993249580?text=Olá Brener, quero a Opção A." class="btn-whatsapp">Entre em contato</a>
+                        <a href="https://wa.me/5591993249580?text=Olá Brener, quero a do Vasco." class="btn-whatsapp">Entre em contato com o Brener</a>
                     </div>
                 </div>
 
                 <div class="swiper-slide card">
                     <div class="swiper swiper-images">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide"><img src="photo1.png" alt="Camisa B1"></div>
-                            <div class="swiper-slide"><img src="photo2.png" alt="Camisa B2"></div>
-                            <div class="swiper-slide"><img src="photo3.png" alt="Camisa B3"></div>
+                            <div class="swiper-slide"><img src="Flamengo/foto1" alt="Flamengo 1"></div>
+                            <div class="swiper-slide"><img src="Flamengo/foto2" alt="Flamengo 2"></div>
                         </div>
                         <div class="swiper-pagination"></div>
                     </div>
                     <div class="content">
-                        <h2>Camisa Opção B</h2>
+                        <h2>Flamengo</h2>
                         <p class="modelo-info">Modelo Torcedor</p>
                         <div class="price-area">
                             <span class="old-price">R$ 189,00</span>
                             <span class="new-price">R$ 169,00</span>
                         </div>
-                        <a href="https://wa.me/5591993249580?text=Olá Brener, quero a Opção B." class="btn-whatsapp">Entre em contato</a>
+                        <a href="https://wa.me/5591993249580?text=Olá Brener, quero a do Flamengo." class="btn-whatsapp">Entre em contato com o Brener</a>
                     </div>
                 </div>
 
                 <div class="swiper-slide card">
                     <div class="swiper swiper-images">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide"><img src="picture1.png" alt="Camisa C1"></div>
-                            <div class="swiper-slide"><img src="picture2.png" alt="Camisa C2"></div>
-                            <div class="swiper-slide"><img src="picture3.png" alt="Camisa C3"></div>
+                            <div class="swiper-slide"><img src="Cruzeiro/foto1" alt="Cruzeiro 1"></div>
+                            <div class="swiper-slide"><img src="Cruzeiro/foto2" alt="Cruzeiro 2"></div>
                         </div>
                         <div class="swiper-pagination"></div>
                     </div>
                     <div class="content">
-                        <h2>Camisa Opção C</h2>
+                        <h2>Cruzeiro</h2>
                         <p class="modelo-info">Modelo Torcedor</p>
                         <div class="price-area">
                             <span class="old-price">R$ 189,00</span>
                             <span class="new-price">R$ 169,00</span>
                         </div>
-                        <a href="https://wa.me/5591993249580?text=Olá Brener, quero a Opção C." class="btn-whatsapp">Entre em contato</a>
+                        <a href="https://wa.me/5591993249580?text=Olá Brener, quero a do Cruzeiro." class="btn-whatsapp">Entre em contato com o Brener</a>
+                    </div>
+                </div>
+
+                <div class="swiper-slide card">
+                    <div class="swiper swiper-images">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide"><img src="Palmeiras/foto1" alt="Palmeiras 1"></div>
+                            <div class="swiper-slide"><img src="Palmeiras/foto2" alt="Palmeiras 2"></div>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                    <div class="content">
+                        <h2>Palmeiras</h2>
+                        <p class="modelo-info">Modelo Torcedor</p>
+                        <div class="price-area">
+                            <span class="old-price">R$ 189,00</span>
+                            <span class="new-price">R$ 169,00</span>
+                        </div>
+                        <a href="https://wa.me/5591993249580?text=Olá Brener, quero a do Palmeiras." class="btn-whatsapp">Entre em contato com o Brener</a>
                     </div>
                 </div>
 
@@ -141,19 +129,17 @@
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        // Configuração para as imagens internas de cada card
-        const configImagens = { loop: true, pagination: { el: '.swiper-pagination', clickable: true } };
-        new Swiper('.swiper-images', configImagens);
-
-        // Configuração do Carrossel de PRODUTOS (Ativa conforme o tamanho da tela)
-        const swiperProdutos = new Swiper('.swiper-produtos', {
+        // Inicializa carrosséis de imagens
+        new Swiper('.swiper-images', { 
+            loop: true, 
+            pagination: { el: '.swiper-pagination', clickable: true } 
+        });
+        
+        // Inicializa carrossel de produtos para mobile
+        new Swiper('.swiper-produtos', {
             slidesPerView: 'auto',
             spaceBetween: 20,
-            breakpoints: {
-                768: {
-                    enabled: false, // Desativa carrossel no PC (vira grid)
-                }
-            }
+            breakpoints: { 768: { enabled: false } }
         });
     </script>
 </body>
