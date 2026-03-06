@@ -8,7 +8,6 @@
     <style>
         body { font-family: 'Segoe UI', sans-serif; background-color: #f0f2f5; margin: 0; padding: 0; }
         
-        /* Cabeçalho */
         header { 
             background-color: #fff; padding: 15px; display: flex; 
             align-items: center; justify-content: center; gap: 15px; 
@@ -17,7 +16,6 @@
         header img { height: 50px; width: auto; }
         header h1 { margin: 0; color: #1a1a1a; font-size: 1.8rem; text-transform: uppercase; }
 
-        /* Controles: Pesquisa e Filtros */
         .controls { max-width: 800px; margin: 20px auto; padding: 0 15px; text-align: center; }
         
         #searchInput { 
@@ -31,10 +29,10 @@
             cursor: pointer; font-weight: bold; transition: 0.3s;
         }
         .filter-btn.active { background: #25d366; color: white; }
+        .btn-clear { background: #ff4d4d; color: white; }
+        .btn-clear:hover { background: #cc0000; }
 
         .main-container { max-width: 1200px; margin: 0 auto; padding: 0 15px 40px 15px; }
-
-        /* Grid de Produtos */
         .product-grid { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin-top: 30px; }
         
         .card { 
@@ -43,7 +41,6 @@
         }
         
         @media (max-width: 767px) { .card { width: 100%; } }
-
         .card.hidden { display: none !important; }
 
         .swiper-images { width: 100%; height: 320px; background-color: #eee; }
@@ -62,14 +59,7 @@
             text-decoration: none; border-radius: 8px; font-weight: bold;
         }
 
-        /* Rodapé com Copyright */
-        footer { 
-            background-color: #1a1a1a; 
-            color: white; 
-            text-align: center; 
-            padding: 30px 20px; 
-            margin-top: 50px; 
-        }
+        footer { background-color: #1a1a1a; color: white; text-align: center; padding: 30px 20px; margin-top: 50px; }
         footer a { color: #25d366; text-decoration: none; font-weight: bold; }
         .copyright { font-size: 0.8rem; margin-top: 10px; color: #888; }
     </style>
@@ -85,9 +75,10 @@
         <input type="text" id="searchInput" placeholder="Pesquise seu time..." onkeyup="filterContent()">
         
         <div class="filter-group">
-            <button class="filter-btn active" onclick="setCategory('todos', this)">Todos</button>
+            <button class="filter-btn active" id="btn-todos" onclick="setCategory('todos', this)">Todos</button>
             <button class="filter-btn" onclick="setCategory('brasileirao', this)">🇧🇷 Brasileirão</button>
             <button class="filter-btn" onclick="setCategory('laliga', this)">🇪🇸 La Liga</button>
+            <button class="filter-btn btn-clear" onclick="clearFilters()">Limpar Filtros</button>
         </div>
     </div>
 
@@ -103,13 +94,10 @@
                     <div class="swiper-pagination"></div>
                 </div>
                 <div class="content">
-                    <h2>Vasco 💢</h2>
-                    <p class="modelo-info">Modelo Torcedor</p>
-                    <div class="price-area">
-                        <span class="old-price">R$ 189</span>
-                        <span class="new-price">R$ 169,00</span>
-                    </div>
-                    <a href="https://wa.me/5591993249580?text=Quero a do Vasco" class="btn-whatsapp">Comprar</a>
+                    <h2>Camisa Vasco 2026 💢</h2>
+                    <p class="modelo-info">Modelo Torcedor Tailandesa</p>
+                    <div class="price-area"><span class="old-price">R$ 189</span><span class="new-price">R$ 169,00</span></div>
+                    <a href="https://wa.me/5591993249580?text=Quero a do Vasco" class="btn-whatsapp">Entre em contato</a>
                 </div>
             </div>
 
@@ -122,13 +110,10 @@
                     <div class="swiper-pagination"></div>
                 </div>
                 <div class="content">
-                    <h2>Flamengo 🔴⚫</h2>
-                    <p class="modelo-info">Modelo Torcedor</p>
-                    <div class="price-area">
-                        <span class="old-price">R$ 189</span>
-                        <span class="new-price">R$ 169,00</span>
-                    </div>
-                    <a href="https://wa.me/5591993249580?text=Quero a do Flamengo" class="btn-whatsapp">Comprar</a>
+                    <h2>Camisa Flamengo 2026 🔴⚫</h2>
+                    <p class="modelo-info">Modelo Torcedor Tailandesa</p>
+                    <div class="price-area"><span class="old-price">R$ 189</span><span class="new-price">R$ 169,00</span></div>
+                    <a href="https://wa.me/5591993249580?text=Quero a do Flamengo" class="btn-whatsapp">Entre em contato</a>
                 </div>
             </div>
 
@@ -141,13 +126,10 @@
                     <div class="swiper-pagination"></div>
                 </div>
                 <div class="content">
-                    <h2>Palmeiras 🐷</h2>
-                    <p class="modelo-info">Modelo Torcedor</p>
-                    <div class="price-area">
-                        <span class="old-price">R$ 189</span>
-                        <span class="new-price">R$ 169,00</span>
-                    </div>
-                    <a href="https://wa.me/5591993249580?text=Quero a do Palmeiras" class="btn-whatsapp">Comprar</a>
+                    <h2>Camisa Palmeiras 2026 🐷</h2>
+                    <p class="modelo-info">Modelo Torcedor Tailandesa</p>
+                    <div class="price-area"><span class="old-price">R$ 189</span><span class="new-price">R$ 169,00</span></div>
+                    <a href="https://wa.me/5591993249580?text=Quero a do Palmeiras" class="btn-whatsapp">Entre em contato</a>
                 </div>
             </div>
 
@@ -160,13 +142,10 @@
                     <div class="swiper-pagination"></div>
                 </div>
                 <div class="content">
-                    <h2>Cruzeiro 🦊</h2>
-                    <p class="modelo-info">Modelo Torcedor</p>
-                    <div class="price-area">
-                        <span class="old-price">R$ 189</span>
-                        <span class="new-price">R$ 169,00</span>
-                    </div>
-                    <a href="https://wa.me/5591993249580?text=Quero a do Cruzeiro" class="btn-whatsapp">Comprar</a>
+                    <h2>Camisa Cruzeiro 2026 🦊</h2>
+                    <p class="modelo-info">Modelo Torcedor Tailandesa</p>
+                    <div class="price-area"><span class="old-price">R$ 189</span><span class="new-price">R$ 169,00</span></div>
+                    <a href="https://wa.me/5591993249580?text=Quero a do Cruzeiro" class="btn-whatsapp">Entre em contato</a>
                 </div>
             </div>
 
@@ -179,13 +158,10 @@
                     <div class="swiper-pagination"></div>
                 </div>
                 <div class="content">
-                    <h2>Real Madrid ⚪</h2>
-                    <p class="modelo-info">Modelo Torcedor</p>
-                    <div class="price-area">
-                        <span class="old-price">R$ 189</span>
-                        <span class="new-price">R$ 169,00</span>
-                    </div>
-                    <a href="https://wa.me/5591993249580?text=Quero a do Real Madrid" class="btn-whatsapp">Comprar</a>
+                    <h2>Camisa Real Madrid 2026 ⚪</h2>
+                    <p class="modelo-info">Modelo Torcedor Tailandesa</p>
+                    <div class="price-area"><span class="old-price">R$ 189</span><span class="new-price">R$ 169,00</span></div>
+                    <a href="https://wa.me/5591993249580?text=Quero a do Real Madrid" class="btn-whatsapp">Entre em contato</a>
                 </div>
             </div>
 
@@ -198,13 +174,10 @@
                     <div class="swiper-pagination"></div>
                 </div>
                 <div class="content">
-                    <h2>Barcelona 🔵🔴</h2>
-                    <p class="modelo-info">Modelo Torcedor</p>
-                    <div class="price-area">
-                        <span class="old-price">R$ 189</span>
-                        <span class="new-price">R$ 169,00</span>
-                    </div>
-                    <a href="https://wa.me/5591993249580?text=Quero a do Barcelona" class="btn-whatsapp">Comprar</a>
+                    <h2>Camisa Barcelona 2026 🔵🔴</h2>
+                    <p class="modelo-info">Modelo Torcedor Tailandesa</p>
+                    <div class="price-area"><span class="old-price">R$ 189</span><span class="new-price">R$ 169,00</span></div>
+                    <a href="https://wa.me/5591993249580?text=Quero a do Barcelona" class="btn-whatsapp">Entre em contato</a>
                 </div>
             </div>
 
@@ -220,10 +193,7 @@
     <script>
         let currentCategory = 'todos';
 
-        new Swiper('.swiper-images', { 
-            loop: true, 
-            pagination: { el: '.swiper-pagination', clickable: true } 
-        });
+        new Swiper('.swiper-images', { loop: true, pagination: { el: '.swiper-pagination', clickable: true } });
 
         function setCategory(cat, btn) {
             currentCategory = cat;
@@ -232,22 +202,21 @@
             filterContent();
         }
 
+        function clearFilters() {
+            document.getElementById('searchInput').value = '';
+            setCategory('todos', document.getElementById('btn-todos'));
+        }
+
         function filterContent() {
             let search = document.getElementById('searchInput').value.toLowerCase();
             let cards = document.querySelectorAll('.card');
-            
             cards.forEach(card => {
                 let name = card.getAttribute('data-name');
                 let cat = card.getAttribute('data-category');
-                
                 let matchesSearch = name.includes(search);
                 let matchesCategory = (currentCategory === 'todos' || cat === currentCategory);
-                
-                if (matchesSearch && matchesCategory) {
-                    card.classList.remove('hidden');
-                } else {
-                    card.classList.add('hidden');
-                }
+                if (matchesSearch && matchesCategory) { card.classList.remove('hidden'); } 
+                else { card.classList.add('hidden'); }
             });
         }
     </script>
