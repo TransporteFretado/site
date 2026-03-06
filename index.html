@@ -3,52 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Club da Bola - Modelo Torcedor</title>
+    <title>Club da Bola - Vitrine Oficial</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <style>
         body { font-family: 'Segoe UI', sans-serif; background-color: #f0f2f5; margin: 0; padding: 0; }
         
-        /* Cabeçalho com Logo */
+        /* Cabeçalho */
         header { 
-            background-color: #fff; 
-            padding: 15px; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            gap: 15px; 
+            background-color: #fff; padding: 15px; display: flex; 
+            align-items: center; justify-content: center; gap: 15px; 
             box-shadow: 0 2px 10px rgba(0,0,0,0.1); 
         }
-        header img { height: 50px; width: auto; } /* Ajuste a altura da logo aqui */
-        header h1 { margin: 0; color: #1a1a1a; font-size: 1.8rem; text-transform: uppercase; letter-spacing: 1px; }
+        header img { height: 50px; width: auto; }
+        header h1 { margin: 0; color: #1a1a1a; font-size: 1.8rem; text-transform: uppercase; }
 
-        /* Barra de Pesquisa */
-        .search-container { max-width: 600px; margin: 20px auto; padding: 0 15px; }
+        /* Controles: Pesquisa e Filtros */
+        .controls { max-width: 800px; margin: 20px auto; padding: 0 15px; text-align: center; }
+        
         #searchInput { 
             width: 100%; padding: 12px; border-radius: 25px; border: 1px solid #ddd; 
-            font-size: 1rem; outline: none; box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            font-size: 1rem; outline: none; margin-bottom: 15px;
         }
+
+        .filter-group { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+        .filter-btn { 
+            padding: 8px 20px; border-radius: 20px; border: none; background: #ddd; 
+            cursor: pointer; font-weight: bold; transition: 0.3s;
+        }
+        .filter-btn.active { background: #25d366; color: white; }
 
         .main-container { max-width: 1200px; margin: 0 auto; padding: 0 15px 40px 15px; }
+
+        /* Grid de Produtos */
+        .product-grid { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin-top: 30px; }
         
-        .section-title { 
-            display: flex; align-items: center; gap: 10px; margin: 40px 0 20px 0; 
-            color: #333; font-size: 1.5rem; font-weight: bold;
+        .card { 
+            background: white; border-radius: 15px; width: 280px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08); overflow: hidden; 
         }
-
-        .product-grid { display: flex; flex-wrap: nowrap; gap: 20px; }
         
-        @media (max-width: 767px) {
-            .swiper-produtos { padding-bottom: 30px; }
-            .card { width: 85vw; }
-        }
+        @media (max-width: 767px) { .card { width: 100%; } }
 
-        @media (min-width: 768px) {
-            .product-grid { justify-content: flex-start; flex-wrap: wrap; }
-            .card { flex: 0 0 280px; }
-            .swiper-produtos { overflow: visible; }
-        }
-
-        .card { background: white; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); overflow: hidden; }
         .card.hidden { display: none !important; }
 
         .swiper-images { width: 100%; height: 320px; background-color: #eee; }
@@ -64,18 +59,19 @@
         
         .btn-whatsapp { 
             display: block; background-color: #25d366; color: white; padding: 12px; 
-            text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 0.9rem;
+            text-decoration: none; border-radius: 8px; font-weight: bold;
         }
 
-        /* Rodapé Corrigido */
-        footer {
-            background-color: #1a1a1a;
-            color: white;
-            text-align: center;
-            padding: 30px 20px;
-            margin-top: 50px;
+        /* Rodapé com Copyright */
+        footer { 
+            background-color: #1a1a1a; 
+            color: white; 
+            text-align: center; 
+            padding: 30px 20px; 
+            margin-top: 50px; 
         }
         footer a { color: #25d366; text-decoration: none; font-weight: bold; }
+        .copyright { font-size: 0.8rem; margin-top: 10px; color: #888; }
     </style>
 </head>
 <body>
@@ -85,49 +81,173 @@
         <h1>Club da Bola</h1>
     </header>
 
-    <div class="search-container">
-        <input type="text" id="searchInput" placeholder="Pesquise seu time..." onkeyup="filterTeams()">
+    <div class="controls">
+        <input type="text" id="searchInput" placeholder="Pesquise seu time..." onkeyup="filterContent()">
+        
+        <div class="filter-group">
+            <button class="filter-btn active" onclick="setCategory('todos', this)">Todos</button>
+            <button class="filter-btn" onclick="setCategory('brasileirao', this)">🇧🇷 Brasileirão</button>
+            <button class="filter-btn" onclick="setCategory('laliga', this)">🇪🇸 La Liga</button>
+        </div>
     </div>
 
     <div class="main-container">
-        <div class="section-title">🇧🇷 Brasileirão</div>
-        <div class="swiper swiper-produtos">
-            <div class="swiper-wrapper product-grid">
-                <div class="swiper-slide card" data-name="vasco">
-                    <div class="swiper swiper-images">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide"><img src="Vasco/foto1.png" alt="Vasco 1"></div>
-                            <div class="swiper-slide"><img src="Vasco/foto2.jpg" alt="Vasco 2"></div>
-                        </div>
-                        <div class="swiper-pagination"></div>
+        <div class="product-grid" id="productGrid">
+            
+            <div class="card" data-name="vasco" data-category="brasileirao">
+                <div class="swiper swiper-images">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide"><img src="Vasco/foto1.png"></div>
+                        <div class="swiper-slide"><img src="Vasco/foto2.jpg"></div>
                     </div>
-                    <div class="content">
-                        <h2>Vasco 💢</h2>
-                        <p class="modelo-info">Modelo Torcedor</p>
-                        <div class="price-area"><span class="old-price">R$ 189</span><span class="new-price">R$ 169,00</span></div>
-                        <a href="https://wa.me/5591993249580?text=Olá Brener, quero a do Vasco" class="btn-whatsapp">Entre em contato</a>
+                    <div class="swiper-pagination"></div>
+                </div>
+                <div class="content">
+                    <h2>Vasco 💢</h2>
+                    <p class="modelo-info">Modelo Torcedor</p>
+                    <div class="price-area">
+                        <span class="old-price">R$ 189</span>
+                        <span class="new-price">R$ 169,00</span>
                     </div>
+                    <a href="https://wa.me/5591993249580?text=Quero a do Vasco" class="btn-whatsapp">Comprar</a>
                 </div>
             </div>
+
+            <div class="card" data-name="flamengo" data-category="brasileirao">
+                <div class="swiper swiper-images">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide"><img src="Flamengo/foto1.png"></div>
+                        <div class="swiper-slide"><img src="Flamengo/foto2.png"></div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+                <div class="content">
+                    <h2>Flamengo 🔴⚫</h2>
+                    <p class="modelo-info">Modelo Torcedor</p>
+                    <div class="price-area">
+                        <span class="old-price">R$ 189</span>
+                        <span class="new-price">R$ 169,00</span>
+                    </div>
+                    <a href="https://wa.me/5591993249580?text=Quero a do Flamengo" class="btn-whatsapp">Comprar</a>
+                </div>
+            </div>
+
+            <div class="card" data-name="palmeiras" data-category="brasileirao">
+                <div class="swiper swiper-images">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide"><img src="Palmeiras/foto1.png"></div>
+                        <div class="swiper-slide"><img src="Palmeiras/foto2.png"></div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+                <div class="content">
+                    <h2>Palmeiras 🐷</h2>
+                    <p class="modelo-info">Modelo Torcedor</p>
+                    <div class="price-area">
+                        <span class="old-price">R$ 189</span>
+                        <span class="new-price">R$ 169,00</span>
+                    </div>
+                    <a href="https://wa.me/5591993249580?text=Quero a do Palmeiras" class="btn-whatsapp">Comprar</a>
+                </div>
+            </div>
+
+            <div class="card" data-name="cruzeiro" data-category="brasileirao">
+                <div class="swiper swiper-images">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide"><img src="Cruzeiro/foto1.png"></div>
+                        <div class="swiper-slide"><img src="Cruzeiro/foto2.png"></div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+                <div class="content">
+                    <h2>Cruzeiro 🦊</h2>
+                    <p class="modelo-info">Modelo Torcedor</p>
+                    <div class="price-area">
+                        <span class="old-price">R$ 189</span>
+                        <span class="new-price">R$ 169,00</span>
+                    </div>
+                    <a href="https://wa.me/5591993249580?text=Quero a do Cruzeiro" class="btn-whatsapp">Comprar</a>
+                </div>
+            </div>
+
+            <div class="card" data-name="real madrid" data-category="laliga">
+                <div class="swiper swiper-images">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide"><img src="Real Madrid/foto1.png"></div>
+                        <div class="swiper-slide"><img src="Real Madrid/foto2.png"></div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+                <div class="content">
+                    <h2>Real Madrid ⚪</h2>
+                    <p class="modelo-info">Modelo Torcedor</p>
+                    <div class="price-area">
+                        <span class="old-price">R$ 189</span>
+                        <span class="new-price">R$ 169,00</span>
+                    </div>
+                    <a href="https://wa.me/5591993249580?text=Quero a do Real Madrid" class="btn-whatsapp">Comprar</a>
+                </div>
+            </div>
+
+            <div class="card" data-name="barcelona" data-category="laliga">
+                <div class="swiper swiper-images">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide"><img src="Barcelona/foto1.png"></div>
+                        <div class="swiper-slide"><img src="Barcelona/foto2.png"></div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+                <div class="content">
+                    <h2>Barcelona 🔵🔴</h2>
+                    <p class="modelo-info">Modelo Torcedor</p>
+                    <div class="price-area">
+                        <span class="old-price">R$ 189</span>
+                        <span class="new-price">R$ 169,00</span>
+                    </div>
+                    <a href="https://wa.me/5591993249580?text=Quero a do Barcelona" class="btn-whatsapp">Comprar</a>
+                </div>
+            </div>
+
         </div>
     </div>
 
     <footer>
         Siga-nos no Instagram: <a href="https://instagram.com/club_dabola" target="_blank">@club_dabola</a>
+        <div class="copyright">© 2026 Club da Bola</div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        new Swiper('.swiper-images', { loop: true, pagination: { el: '.swiper-pagination', clickable: true } });
-        new Swiper('.swiper-produtos', { slidesPerView: 'auto', spaceBetween: 20, breakpoints: { 768: { enabled: false } } });
+        let currentCategory = 'todos';
 
-        function filterTeams() {
-            let input = document.getElementById('searchInput').value.toLowerCase();
+        new Swiper('.swiper-images', { 
+            loop: true, 
+            pagination: { el: '.swiper-pagination', clickable: true } 
+        });
+
+        function setCategory(cat, btn) {
+            currentCategory = cat;
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            filterContent();
+        }
+
+        function filterContent() {
+            let search = document.getElementById('searchInput').value.toLowerCase();
             let cards = document.querySelectorAll('.card');
+            
             cards.forEach(card => {
-                let teamName = card.getAttribute('data-name');
-                if (teamName.includes(input)) { card.classList.remove('hidden'); } 
-                else { card.classList.add('hidden'); }
+                let name = card.getAttribute('data-name');
+                let cat = card.getAttribute('data-category');
+                
+                let matchesSearch = name.includes(search);
+                let matchesCategory = (currentCategory === 'todos' || cat === currentCategory);
+                
+                if (matchesSearch && matchesCategory) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
             });
         }
     </script>
