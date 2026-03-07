@@ -6,270 +6,214 @@
     <title>Club da Bola - Vitrine Oficial</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
     <style>
-        body { font-family: 'Roboto', sans-serif; background-color: #f0f2f5; margin: 0; padding: 0; }
-        header { background-color: #fff; padding: 10px 20px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 10px rgba(0,0,0,0.1); flex-wrap: wrap; gap: 15px; }
-        .brand { display: flex; align-items: center; gap: 10px; }
-        .brand img { height: 45px; width: auto; }
-        .brand h1 { margin: 0; color: #1a1a1a; font-family: 'Oswald', sans-serif; font-size: 1.8rem; text-transform: uppercase; }
-        .search-wrapper { flex: 1; min-width: 250px; }
-        #searchInput { width: 100%; padding: 10px 15px; border-radius: 4px; border: 1px solid #ccc; font-size: 0.9rem; outline: none; }
-        .nav-categories { background: #fff; border-top: 1px solid #eee; padding: 10px 20px; display: flex; align-items: center; gap: 15px; }
-        .nav-categories span { font-weight: bold; font-size: 0.9rem; color: #333; }
-        #categorySelect { padding: 8px; border-radius: 4px; border: 1px solid #ddd; font-size: 0.9rem; background: #f9f9f9; cursor: pointer; }
-        .main-container { max-width: 1200px; margin: 0 auto; padding: 20px 15px 40px 15px; }
-        .product-grid { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
-        .card { background: white; border-radius: 8px; width: 260px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); overflow: hidden; transition: transform 0.2s; }
-        .card:hover { transform: translateY(-5px); }
-        .card.hidden { display: none !important; }
-        .swiper-images { width: 100%; height: 280px; background-color: #fff; position: relative; }
-        .swiper-images img { width: 100%; height: 100%; object-fit: contain; display: block; cursor: zoom-in; }
-        .content { padding: 15px; text-align: left; }
-        h2 { margin: 0; color: #333; font-size: 0.95rem; line-height: 1.2; height: 38px; overflow: hidden; }
-        .modelo-info { color: #777; font-size: 0.75rem; margin: 8px 0; }
-        .price-area { margin-bottom: 12px; }
-        .old-price { color: #999; text-decoration: line-through; font-size: 0.8rem; }
-        .new-price { color: #27ae60; font-weight: bold; font-size: 1.2rem; display: block; }
-        .btn-whatsapp { display: block; background-color: #25d366; color: white; padding: 10px; text-decoration: none; border-radius: 4px; font-weight: bold; text-align: center; font-size: 0.85rem; }
-        footer { background-color: #1a1a1a; color: white; text-align: center; padding: 25px 20px; margin-top: 40px; }
-        footer a { color: #25d366; text-decoration: none; font-weight: bold; }
-        .copyright { font-size: 0.75rem; margin-top: 10px; color: #888; }
+        :root {
+            --primary-color: #7b00ff; /* Roxo Netshoes para destaque */
+            --bg-color: #ffffff;
+            --text-main: #1a1a1a;
+            --text-muted: #666;
+            --border-color: #eee;
+        }
+
+        body { font-family: 'Roboto', sans-serif; background-color: #fff; margin: 0; color: var(--text-main); }
+        
+        /* HEADER ESTILO APP */
+        header { 
+            position: sticky; top: 0; z-index: 1000;
+            background: white; padding: 10px 15px; 
+            border-bottom: 1px solid var(--border-color);
+        }
+        .header-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+        .brand h1 { margin: 0; font-size: 1.4rem; letter-spacing: -1px; text-transform: lowercase; font-weight: 700; }
+        
+        .search-container { position: relative; width: 100%; }
+        #searchInput { 
+            width: 100%; padding: 12px 40px 12px 15px; 
+            border-radius: 8px; border: 1px solid #ddd; 
+            background: #f5f5f5; box-sizing: border-box; outline: none;
+        }
+
+        /* FILTROS */
+        .filter-bar {
+            padding: 10px 15px; display: flex; gap: 10px; 
+            overflow-x: auto; white-space: nowrap; border-bottom: 1px solid var(--border-color);
+        }
+        .filter-bar::-webkit-scrollbar { display: none; }
+        .filter-btn {
+            padding: 8px 16px; border-radius: 20px; border: 1px solid #ddd;
+            background: white; font-size: 0.85rem; cursor: pointer;
+        }
+        .filter-btn.active { background: var(--text-main); color: white; border-color: var(--text-main); }
+
+        /* SEÇÕES DE CATEGORIA */
+        .category-section { padding: 20px 0; border-bottom: 8px solid #f9f9f9; }
+        .category-title { 
+            padding: 0 15px; display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 15px;
+        }
+        .category-title h2 { font-size: 1.1rem; margin: 0; font-weight: 700; }
+        .view-all { font-size: 0.85rem; color: var(--text-muted); text-decoration: underline; }
+
+        /* CARROSSEL DE PRODUTOS */
+        .swiper-products { padding: 0 15px !important; }
+        
+        .product-card { 
+            width: 160px; /* Tamanho mobile padrão */
+            transition: 0.3s; position: relative;
+        }
+        .img-wrapper {
+            background: #f8f8f8; border-radius: 4px; overflow: hidden;
+            aspect-ratio: 1/1; display: flex; align-items: center; justify-content: center;
+            cursor: zoom-in;
+        }
+        .img-wrapper img { width: 100%; height: 100%; object-fit: contain; }
+        
+        .product-info { padding: 10px 0; }
+        .product-name { font-size: 0.85rem; margin: 0; color: #333; height: 34px; overflow: hidden; }
+        .product-price { display: block; font-weight: 700; font-size: 1rem; margin-top: 5px; color: #000; }
+        .product-old-price { font-size: 0.75rem; color: #999; text-decoration: line-through; }
+
+        /* RESPONSIVIDADE DESKTOP */
+        @media (min-width: 768px) {
+            .product-card { width: 220px; }
+            .category-section { max-width: 1200px; margin: 0 auto; }
+            #searchInput { max-width: 500px; }
+            .header-top { justify-content: center; gap: 50px; }
+        }
+
+        footer { padding: 40px 15px; text-align: center; font-size: 0.8rem; color: #999; border-top: 1px solid #eee; }
     </style>
 </head>
 <body>
+
     <header>
-        <div class="brand">
-            <img src="logo1.png" alt="Logo Club da Bola">
-            <h1>Club da Bola</h1>
+        <div class="header-top">
+            <div class="brand"><h1>club<span>da</span>bola</h1></div>
         </div>
-        <div class="search-wrapper">
-            <input type="text" id="searchInput" placeholder="Qual camisa você procura?" onkeyup="filterContent()">
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="O que você está procurando?" onkeyup="searchProducts()">
         </div>
     </header>
 
-    <div class="nav-categories">
-        <span>Filtrar por:</span>
-        <select id="categorySelect" onchange="filterContent()">
-            <option value="todos">Todas as Ligas</option>
-            <option value="brasileirao">Brasileirão / Nacionais</option>
-            <option value="laliga">La Liga</option>
-            <option value="premierleague">Premier League</option>
-            <option value="seriea">Serie A</option>
-            <option value="ligue1">Ligue 1</option>
-            <option value="selecoes">Seleções</option>
-        </select>
+    <div class="filter-bar" id="filterBar">
+        <button class="filter-btn active" onclick="filterTab('todos', this)">Tudo</button>
+        <button class="filter-btn" onclick="filterTab('brasileirao', this)">Brasileirão</button>
+        <button class="filter-btn" onclick="filterTab('laliga', this)">La Liga</button>
+        <button class="filter-btn" onclick="filterTab('selecoes', this)">Seleções</button>
     </div>
 
-    <div class="main-container">
-        <div class="product-grid" id="productGrid">
-            
-            <div class="card" data-name="vasco" data-category="brasileirao">
-                <div class="swiper swiper-images"><div class="swiper-wrapper">
-                    <div class="swiper-slide"><a href="Vasco/foto1.png" data-fancybox="vasco"><img src="Vasco/foto1.png"></a></div>
-                    <div class="swiper-slide"><a href="Vasco/foto2.png" data-fancybox="vasco"><img src="Vasco/foto2.png"></a></div>
-                </div><div class="swiper-pagination"></div></div>
-                <div class="content"><h2>Camisa Vasco 2026 💢</h2><p class="modelo-info">Modelo Torcedor Tailandesa</p>
-                <div class="price-area"><span class="old-price">R$ 189</span><span class="new-price">R$ 169,00</span></div><a href="https://wa.me/5591993249580" class="btn-whatsapp">Entre em contato</a></div>
+    <main id="mainContent">
+        <section class="category-section" data-cat="brasileirao">
+            <div class="category-title">
+                <h2>Brasileirão 2026</h2>
+                <a href="#" class="view-all">Ver mais</a>
             </div>
-
-            <div class="card" data-name="flamengo" data-category="brasileirao">
-                <div class="swiper swiper-images"><div class="swiper-wrapper">
-                    <div class="swiper-slide"><a href="Flamengo/foto1.png" data-fancybox="flamengo"><img src="Flamengo/foto1.png"></a></div>
-                    <div class="swiper-slide"><a href="Flamengo/foto2.png" data-fancybox="flamengo"><img src="Flamengo/foto2.png"></a></div>
-                </div><div class="swiper-pagination"></div></div>
-                <div class="content"><h2>Camisa Flamengo 2026 🔴⚫</h2><p class="modelo-info">Modelo Torcedor Tailandesa</p>
-                <div class="price-area"><span class="old-price">R$ 189</span><span class="new-price">R$ 169,00</span></div><a href="https://wa.me/5591993249580" class="btn-whatsapp">Entre em contato</a></div>
+            <div class="swiper swiper-products">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide product-card">
+                        <div class="img-wrapper">
+                            <a href="Vasco/foto1.png" data-fancybox="gallery-vasco">
+                                <img src="Vasco/foto1.png" alt="Vasco">
+                            </a>
+                        </div>
+                        <div class="product-info">
+                            <p class="product-name">Camisa Vasco 2026 Tailandesa</p>
+                            <span class="product-old-price">R$ 189,00</span>
+                            <span class="product-price">R$ 169,00</span>
+                        </div>
+                    </div>
+                    <div class="swiper-slide product-card">
+                        <div class="img-wrapper">
+                            <a href="Flamengo/foto1.png" data-fancybox="gallery-fla">
+                                <img src="Flamengo/foto1.png" alt="Flamengo">
+                            </a>
+                        </div>
+                        <div class="product-info">
+                            <p class="product-name">Camisa Flamengo 2026 Tailandesa</p>
+                            <span class="product-price">R$ 169,00</span>
+                        </div>
+                    </div>
+                    </div>
             </div>
+        </section>
 
-            <div class="card" data-name="palmeiras" data-category="brasileirao">
-                <div class="swiper swiper-images"><div class="swiper-wrapper">
-                    <div class="swiper-slide"><a href="Palmeiras/foto1.png" data-fancybox="palmeiras"><img src="Palmeiras/foto1.png"></a></div>
-                    <div class="swiper-slide"><a href="Palmeiras/foto2.png" data-fancybox="palmeiras"><img src="Palmeiras/foto2.png"></a></div>
-                </div><div class="swiper-pagination"></div></div>
-                <div class="content"><h2>Camisa Palmeiras 2026 🐷</h2><p class="modelo-info">Modelo Torcedor Tailandesa</p>
-                <div class="price-area"><span class="old-price">R$ 189</span><span class="new-price">R$ 169,00</span></div><a href="https://wa.me/5591993249580" class="btn-whatsapp">Entre em contato</a></div>
+        <section class="category-section" data-cat="laliga">
+            <div class="category-title">
+                <h2>La Liga</h2>
+                <a href="#" class="view-all">Ver mais</a>
             </div>
-
-            <div class="card" data-name="corinthians" data-category="brasileirao">
-                <div class="swiper swiper-images"><div class="swiper-wrapper">
-                    <div class="swiper-slide"><a href="Corinthians/foto1.png" data-fancybox="corinthians"><img src="Corinthians/foto1.png"></a></div>
-                    <div class="swiper-slide"><a href="Corinthians/foto2.png" data-fancybox="corinthians"><img src="Corinthians/foto2.png"></a></div>
-                </div><div class="swiper-pagination"></div></div>
-                <div class="content"><h2>Camisa Corinthians 2026 🦅</h2><p class="modelo-info">Modelo Torcedor Tailandesa</p>
-                <div class="price-area"><span class="old-price">R$ 189</span><span class="new-price">R$ 169,00</span></div><a href="https://wa.me/5591993249580" class="btn-whatsapp">Entre em contato</a></div>
+            <div class="swiper swiper-products">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide product-card">
+                        <div class="img-wrapper">
+                            <a href="Real Madrid/foto1.png" data-fancybox="gallery-real">
+                                <img src="Real Madrid/foto1.png" alt="Real">
+                            </a>
+                        </div>
+                        <div class="product-info">
+                            <p class="product-name">Camisa Real Madrid 2026 Jogador</p>
+                            <span class="product-price">R$ 189,00</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-            <div class="card" data-name="sao paulo" data-category="brasileirao">
-                <div class="swiper swiper-images"><div class="swiper-wrapper">
-                    <div class="swiper-slide"><a href="Sao Paulo/foto1.png" data-fancybox="saopaulo"><img src="Sao Paulo/foto1.png"></a></div>
-                    <div class="swiper-slide"><a href="Sao Paulo/foto2.png" data-fancybox="saopaulo"><img src="Sao Paulo/foto2.png"></a></div>
-                </div><div class="swiper-pagination"></div></div>
-                <div class="content"><h2>Camisa São Paulo 2026 🇾🇪</h2><p class="modelo-info">Modelo Torcedor Tailandesa</p>
-                <div class="price-area"><span class="old-price">R$ 189</span><span class="new-price">R$ 169,00</span></div><a href="https://wa.me/5591993249580" class="btn-whatsapp">Entre em contato</a></div>
-            </div>
-
-            <div class="card" data-name="santos" data-category="brasileirao">
-                <div class="swiper swiper-images"><div class="swiper-wrapper">
-                    <div class="swiper-slide"><a href="Santos/foto1.png" data-fancybox="santos"><img src="Santos/foto1.png"></a></div>
-                    <div class="swiper-slide"><a href="Santos/foto2.png" data-fancybox="santos"><img src="Santos/foto2.png"></a></div>
-                </div><div class="swiper-pagination"></div></div>
-                <div class="content"><h2>Camisa Santos 2026 🐳</h2><p class="modelo-info">Modelo Torcedor Tailandesa</p>
-                <div class="price-area"><span class="old-price">R$ 189</span><span class="new-price">R$ 169,00</span></div><a href="https://wa.me/5591993249580" class="btn-whatsapp">Entre em contato</a></div>
-            </div>
-
-            <div class="card" data-name="botafogo" data-category="brasileirao">
-                <div class="swiper swiper-images"><div class="swiper-wrapper">
-                    <div class="swiper-slide"><a href="Botafogo/foto1.png" data-fancybox="botafogo"><img src="Botafogo/foto1.png"></a></div>
-                    <div class="swiper-slide"><a href="Botafogo/foto2.png" data-fancybox="botafogo"><img src="Botafogo/foto2.png"></a></div>
-                </div><div class="swiper-pagination"></div></div>
-                <div class="content"><h2>Camisa Botafogo 2026 ⭐</h2><p class="modelo-info">Modelo Torcedor Tailandesa</p>
-                <div class="price-area"><span class="old-price">R$ 189</span><span class="new-price">R$ 169,00</span></div><a href="https://wa.me/5591993249580" class="btn-whatsapp">Entre em contato</a></div>
-            </div>
-
-            <div class="card" data-name="fluminense" data-category="brasileirao">
-                <div class="swiper swiper-images"><div class="swiper-wrapper">
-                    <div class="swiper-slide"><a href="Fluminense/foto1.png" data-fancybox="fluminense"><img src="Fluminense/foto1.png"></a></div>
-                    <div class="swiper-slide"><a href="Fluminense/foto2.png" data-fancybox="fluminense"><img src="Fluminense/foto2.png"></a></div>
-                </div><div class="swiper-pagination"></div></div>
-                <div class="content"><h2>Camisa Fluminense 2026 🇭🇺</h2><p class="modelo-info">Modelo Torcedor Tailandesa</p>
-                <div class="price-area"><span class="old-price">R$ 189</span><span class="new-price">R$ 169,00</span></div><a href="https://wa.me/5591993249580" class="btn-whatsapp">Entre em contato</a></div>
-            </div>
-
-            <div class="card" data-name="real madrid" data-category="laliga">
-                <div class="swiper swiper-images"><div class="swiper-wrapper">
-                    <div class="swiper-slide"><a href="Real Madrid Jogador/foto1.png" data-fancybox="realmadrid_jog"><img src="Real Madrid Jogador/foto1.png"></a></div>
-                    <div class="swiper-slide"><a href="Real Madrid Jogador/foto2.png" data-fancybox="realmadrid_jog"><img src="Real Madrid Jogador/foto2.png"></a></div>
-                </div><div class="swiper-pagination"></div></div>
-                <div class="content"><h2>Camisa Real Madrid 2026 ⚪</h2><p class="modelo-info">Modelo Jogador Tailandesa</p>
-                <div class="price-area"><span class="old-price">R$ 209</span><span class="new-price">R$ 189,00</span></div><a href="https://wa.me/5591993249580" class="btn-whatsapp">Entre em contato</a></div>
-            </div>
-
-            <div class="card" data-name="barcelona" data-category="laliga">
-                <div class="swiper swiper-images"><div class="swiper-wrapper">
-                    <div class="swiper-slide"><a href="Barcelona Jogador/foto1.png" data-fancybox="barcelona_jog"><img src="Barcelona Jogador/foto1.png"></a></div>
-                    <div class="swiper-slide"><a href="Barcelona Jogador/foto2.png" data-fancybox="barcelona_jog"><img src="Barcelona Jogador/foto2.png"></a></div>
-                </div><div class="swiper-pagination"></div></div>
-                <div class="content"><h2>Camisa Barcelona 2026 🔵🔴</h2><p class="modelo-info">Modelo Jogador Tailandesa</p>
-                <div class="price-area"><span class="old-price">R$ 209</span><span class="new-price">R$ 189,00</span></div><a href="https://wa.me/5591993249580" class="btn-whatsapp">Entre em contato</a></div>
-            </div>
-
-            <div class="card" data-name="palmeiras" data-category="brasileirao">
-                <div class="swiper swiper-images"><div class="swiper-wrapper">
-                    <div class="swiper-slide"><a href="Palmeiras Jogador/foto1.png" data-fancybox="palmeiras_jog"><img src="Palmeiras Jogador/foto1.png"></a></div>
-                    <div class="swiper-slide"><a href="Palmeiras Jogador/foto2.png" data-fancybox="palmeiras_jog"><img src="Palmeiras Jogador/foto2.png"></a></div>
-                </div><div class="swiper-pagination"></div></div>
-                <div class="content"><h2>Camisa Palmeiras 2026 🐷</h2><p class="modelo-info">Modelo Jogador Tailandesa</p>
-                <div class="price-area"><span class="old-price">R$ 209</span><span class="new-price">R$ 189,00</span></div><a href="https://wa.me/5591993249580" class="btn-whatsapp">Entre em contato</a></div>
-            </div>
-
-            <div class="card" data-name="flamengo" data-category="brasileirao">
-                <div class="swiper swiper-images"><div class="swiper-wrapper">
-                    <div class="swiper-slide"><a href="Flamengo Jogador/foto1.png" data-fancybox="flamengo_jog"><img src="Flamengo Jogador/foto1.png"></a></div>
-                    <div class="swiper-slide"><a href="Flamengo Jogador/foto2.png" data-fancybox="flamengo_jog"><img src="Flamengo Jogador/foto2.png"></a></div>
-                </div><div class="swiper-pagination"></div></div>
-                <div class="content"><h2>Camisa Flamengo 2026 🔴⚫</h2><p class="modelo-info">Modelo Jogador Tailandesa</p>
-                <div class="price-area"><span class="old-price">R$ 209</span><span class="new-price">R$ 189,00</span></div><a href="https://wa.me/5591993249580" class="btn-whatsapp">Entre em contato</a></div>
-            </div>
-
-            <div class="card" data-name="brasil" data-category="selecoes">
-                <div class="swiper swiper-images"><div class="swiper-wrapper">
-                    <div class="swiper-slide"><a href="Selecoes/brasil1.png" data-fancybox="brasil"><img src="Selecoes/brasil1.png"></a></div>
-                    <div class="swiper-slide"><a href="Selecoes/brasil2.png" data-fancybox="brasil"><img src="Selecoes/brasil2.png"></a></div>
-                </div><div class="swiper-pagination"></div></div>
-                <div class="content"><h2>Camisa Brasil 2026 🇧🇷</h2><p class="modelo-info">Modelo Torcedor Tailandesa</p>
-                <div class="price-area"><span class="old-price">R$ 189</span><span class="new-price">R$ 169,00</span></div><a href="https://wa.me/5591993249580" class="btn-whatsapp">Entre em contato</a></div>
-            </div>
-
-            <div class="card" data-name="argentina" data-category="selecoes">
-                <div class="swiper swiper-images"><div class="swiper-wrapper">
-                    <div class="swiper-slide"><a href="Selecoes/argentina1.png" data-fancybox="argentina"><img src="Selecoes/argentina1.png"></a></div>
-                    <div class="swiper-slide"><a href="Selecoes/argentina2.png" data-fancybox="argentina"><img src="Selecoes/argentina2.png"></a></div>
-                </div><div class="swiper-pagination"></div></div>
-                <div class="content"><h2>Camisa Argentina 2026 🇦🇷</h2><p class="modelo-info">Modelo Torcedor Tailandesa</p>
-                <div class="price-area"><span class="old-price">R$ 189</span><span class="new-price">R$ 169,00</span></div><a href="https://wa.me/5591993249580" class="btn-whatsapp">Entre em contato</a></div>
-            </div>
-
-            <div class="card" data-name="espanha" data-category="selecoes">
-                <div class="swiper swiper-images"><div class="swiper-wrapper">
-                    <div class="swiper-slide"><a href="Selecoes/espanha1.png" data-fancybox="espanha"><img src="Selecoes/espanha1.png"></a></div>
-                    <div class="swiper-slide"><a href="Selecoes/espanha2.png" data-fancybox="espanha"><img src="Selecoes/espanha2.png"></a></div>
-                </div><div class="swiper-pagination"></div></div>
-                <div class="content"><h2>Camisa Espanha 2026 🇪🇸</h2><p class="modelo-info">Modelo Torcedor Tailandesa</p>
-                <div class="price-area"><span class="old-price">R$ 189</span><span class="new-price">R$ 169,00</span></div><a href="https://wa.me/5591993249580" class="btn-whatsapp">Entre em contato</a></div>
-            </div>
-
-            <div class="card" data-name="inglaterra" data-category="selecoes">
-                <div class="swiper swiper-images"><div class="swiper-wrapper">
-                    <div class="swiper-slide"><a href="Selecoes/inglaterra1.png" data-fancybox="inglaterra"><img src="Selecoes/inglaterra1.png"></a></div>
-                    <div class="swiper-slide"><a href="Selecoes/inglaterra2.png" data-fancybox="inglaterra"><img src="Selecoes/inglaterra2.png"></a></div>
-                </div><div class="swiper-pagination"></div></div>
-                <div class="content"><h2>Camisa Inglaterra 2026 🏴󠁧󠁢󠁥󠁮󠁧󠁿</h2><p class="modelo-info">Modelo Torcedor Tailandesa</p>
-                <div class="price-area"><span class="old-price">R$ 189</span><span class="new-price">R$ 169,00</span></div><a href="https://wa.me/5591993249580" class="btn-whatsapp">Entre em contato</a></div>
-            </div>
-
-            <div class="card" data-name="portugal" data-category="selecoes">
-                <div class="swiper swiper-images"><div class="swiper-wrapper">
-                    <div class="swiper-slide"><a href="Selecoes/portugal1.png" data-fancybox="portugal"><img src="Selecoes/portugal1.png"></a></div>
-                    <div class="swiper-slide"><a href="Selecoes/portugal2.png" data-fancybox="portugal"><img src="Selecoes/portugal2.png"></a></div>
-                </div><div class="swiper-pagination"></div></div>
-                <div class="content"><h2>Camisa Portugal 2026 🇵🇹</h2><p class="modelo-info">Modelo Torcedor Tailandesa</p>
-                <div class="price-area"><span class="old-price">R$ 189</span><span class="new-price">R$ 169,00</span></div><a href="https://wa.me/5591993249580" class="btn-whatsapp">Entre em contato</a></div>
-            </div>
-
-            <div class="card" data-name="manchester city" data-category="premierleague">
-                <div class="swiper swiper-images"><div class="swiper-wrapper">
-                    <div class="swiper-slide"><a href="Manchester City/foto1.png" data-fancybox="mancity"><img src="Manchester City/foto1.png"></a></div>
-                    <div class="swiper-slide"><a href="Manchester City/foto2.png" data-fancybox="mancity"><img src="Manchester City/foto2.png"></a></div>
-                </div><div class="swiper-pagination"></div></div>
-                <div class="content"><h2>Camisa Man. City 2026 🏗️</h2><p class="modelo-info">Modelo Torcedor Tailandesa</p>
-                <div class="price-area"><span class="old-price">R$ 189</span><span class="new-price">R$ 169,00</span></div><a href="https://wa.me/5591993249580" class="btn-whatsapp">Entre em contato</a></div>
-            </div>
-
-        </div>
-    </div>
+        </section>
+    </main>
 
     <footer>
-        Siga-nos no Instagram: <a href="https://instagram.com/club_dabola" target="_blank">@club_dabola</a>
-        <div class="copyright">© 2026 Club da Bola</div>
+        <p>© 2026 Club da Bola. Todos os direitos reservados.</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+    
     <script>
-        function initSwipers() {
-            new Swiper('.swiper-images', { 
-                loop: true, 
-                grabCursor: true,
-                pagination: { el: '.swiper-pagination', clickable: true } 
+        // Inicializa Carrosséis Horizontais
+        const initSwipers = () => {
+            new Swiper('.swiper-products', {
+                slidesPerView: 'auto',
+                spaceBetween: 15,
+                freeMode: true,
+                mousewheel: { forceToAxis: true },
             });
         }
-        
+
+        // Configuração do Zoom (Fancybox)
         Fancybox.bind("[data-fancybox]", {
-            infinite: true,
-            Thumbs: { autoStart: false }
+            Images: { Panzoom: { maxScale: 3 } }, // Permite muito zoom
+            Toolbar: { display: { left: ["infobar"], right: ["iterateZoom", "close"] } }
         });
 
-        window.onload = initSwipers;
+        // Filtro por Abas
+        function filterTab(category, btn) {
+            // Estilo do botão
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
 
-        function filterContent() {
-            let search = document.getElementById('searchInput').value.toLowerCase();
-            let selectedCat = document.getElementById('categorySelect').value;
-            let cards = document.querySelectorAll('.card');
-
-            cards.forEach(card => {
-                let name = card.getAttribute('data-name');
-                let cat = card.getAttribute('data-category');
-                let matchesSearch = name.includes(search);
-                let matchesCategory = (selectedCat === 'todos' || cat === selectedCat);
-
-                if (matchesSearch && matchesCategory) {
-                    card.classList.remove('hidden');
+            // Lógica de exibição
+            document.querySelectorAll('.category-section').forEach(section => {
+                if(category === 'todos' || section.getAttribute('data-cat') === category) {
+                    section.style.display = 'block';
                 } else {
-                    card.classList.add('hidden');
+                    section.style.display = 'none';
                 }
             });
         }
+
+        // Busca simples
+        function searchProducts() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let cards = document.querySelectorAll('.product-card');
+            
+            cards.forEach(card => {
+                let name = card.querySelector('.product-name').innerText.toLowerCase();
+                card.style.opacity = name.includes(input) ? "1" : "0.2";
+            });
+        }
+
+        window.onload = initSwipers;
     </script>
 </body>
 </html>
