@@ -83,14 +83,14 @@
         <div class="search-wrapper"><input type="text" id="searchInput" placeholder="Qual time você procura?" onkeyup="searchAndFilter()"></div>
         <div class="filter-container">
             <select id="categorySelect" onchange="searchAndFilter()">
-                <option value="todos">Categorias</option>
+                <option value="todos">Todas as categorias</option>
                 <option value="brasileirao">Brasileirão</option>
                 <option value="laliga">La Liga</option>
                 <option value="premier">Premier League</option>
                 <option value="selecoes">Seleções</option>
             </select>
             <select id="modelSelect" onchange="searchAndFilter()">
-                <option value="todos">Modelos</option>
+                <option value="todos">Todos os modelos</option>
                 <option value="Torcedor">Torcedor</option>
                 <option value="Jogador">Jogador</option>
             </select>
@@ -126,8 +126,10 @@
             {id: 'palmeiras_jog', nome: 'Palmeiras', cat: 'brasileirao', mod: 'Jogador', pasta: 'Palmeiras Jogador'},
             {id: 'corinthians', nome: 'Corinthians', cat: 'brasileirao', mod: 'Torcedor', pasta: 'Corinthians'},
             {id: 'saopaulo', nome: 'São Paulo', cat: 'brasileirao', mod: 'Torcedor', pasta: 'Sao Paulo'},
-            {id: 'realmadrid', nome: 'Real Madrid', cat: 'laliga', mod: 'Jogador', pasta: 'Real Madrid Jogador'},
-            {id: 'barcelona', nome: 'Barcelona', cat: 'laliga', mod: 'Jogador', pasta: 'Barcelona Jogador'},
+            {id: 'realmadrid_torc', nome: 'Real Madrid', cat: 'laliga', mod: 'Torcedor', pasta: 'Real Madrid'},
+            {id: 'realmadrid_jog', nome: 'Real Madrid', cat: 'laliga', mod: 'Jogador', pasta: 'Real Madrid Jogador'},
+            {id: 'barcelona_torc', nome: 'Barcelona', cat: 'laliga', mod: 'Torcedor', pasta: 'Barcelona'},
+            {id: 'barcelona_jog', nome: 'Barcelona', cat: 'laliga', mod: 'Jogador', pasta: 'Barcelona Jogador'},
             {id: 'mancity', nome: 'Manchester City', cat: 'premier', mod: 'Torcedor', pasta: 'Manchester City'},
             {id: 'brasil', nome: 'Brasil', cat: 'selecoes', mod: 'Torcedor', pasta: 'Selecoes', f1: 'brasil1.png', f2: 'brasil2.png'},
             {id: 'argentina', nome: 'Argentina', cat: 'selecoes', mod: 'Torcedor', pasta: 'Selecoes', f1: 'argentina1.png', f2: 'argentina2.png'},
@@ -177,7 +179,7 @@
                     <div style="margin: 15px 0">
                         <span style="text-decoration:line-through; color:#999; font-size:0.9rem">R$ ${pDe}</span><br>
                         <span style="font-size:1.5rem; font-weight:bold; color:var(--dark)">R$ ${pPor}</span>
-                        <p style="font-size:0.8rem; color:#d9534f; font-weight:bold; margin-top:5px;">Frete Grátis Acima de 5 Peças</p>
+                        <p style="font-size:0.8rem; color:var(--primary-green); font-weight:bold; margin-top:5px;">Frete Grátis Acima de 5 Peças</p>
                     </div>
                     <hr border="0" style="border-top:1px solid #eee">
                     <p style="font-weight:bold; margin-top:20px; display:flex; align-items:center; gap:5px;">
@@ -211,8 +213,6 @@
             if (selectedSize) {
                 btn.classList.add('active');
                 btn.innerHTML = `ENTRE EM CONTATO (${selectedSize})`;
-                
-                // Correção do Link: Usamos apenas o nome e tamanho para evitar erros de URL longa com o domínio local
                 const textMsg = `Olá! Quero detalhes da camisa do ${currentProduct.nome} (${currentProduct.mod}) Tailandesa, Tamanho ${selectedSize}.`;
                 btn.href = `https://api.whatsapp.com/send?phone=5591993249580&text=${encodeURIComponent(textMsg)}`;
             } else {
@@ -236,7 +236,6 @@
                 card.classList.toggle('hidden', !match);
             });
             
-            // Oculta seções vazias
             document.querySelectorAll('.category-section').forEach(section => {
                 const visible = section.querySelectorAll('.product-card:not(.hidden)');
                 section.style.display = visible.length > 0 ? 'block' : 'none';
