@@ -6,214 +6,194 @@
     <title>Club da Bola - Vitrine Oficial</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary-color: #7b00ff; /* Roxo Netshoes para destaque */
-            --bg-color: #ffffff;
-            --text-main: #1a1a1a;
-            --text-muted: #666;
-            --border-color: #eee;
-        }
-
-        body { font-family: 'Roboto', sans-serif; background-color: #fff; margin: 0; color: var(--text-main); }
+        :root { --primary-green: #25d366; --bg-gray: #f4f4f4; }
+        body { font-family: 'Roboto', sans-serif; background-color: #fff; margin: 0; padding: 0; }
         
-        /* HEADER ESTILO APP */
         header { 
-            position: sticky; top: 0; z-index: 1000;
-            background: white; padding: 10px 15px; 
-            border-bottom: 1px solid var(--border-color);
+            background: #fff; padding: 20px 15px; 
+            display: flex; flex-direction: column; align-items: center; 
+            gap: 12px; border-bottom: 1px solid #eee;
         }
-        .header-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
-        .brand h1 { margin: 0; font-size: 1.4rem; letter-spacing: -1px; text-transform: lowercase; font-weight: 700; }
-        
-        .search-container { position: relative; width: 100%; }
-        #searchInput { 
-            width: 100%; padding: 12px 40px 12px 15px; 
-            border-radius: 8px; border: 1px solid #ddd; 
-            background: #f5f5f5; box-sizing: border-box; outline: none;
+        .brand { display: flex; align-items: center; gap: 10px; }
+        .brand img { height: 35px; width: auto; }
+        .brand h1 { margin: 0; font-family: 'Oswald', sans-serif; font-size: 1.5rem; text-transform: uppercase; }
+
+        .search-wrapper, .filter-wrapper { width: 100%; max-width: 350px; }
+        #searchInput, #categorySelect { 
+            width: 100%; padding: 10px; border-radius: 8px; 
+            border: 1px solid #ddd; background: #fff; outline: none; box-sizing: border-box;
         }
 
-        /* FILTROS */
-        .filter-bar {
-            padding: 10px 15px; display: flex; gap: 10px; 
-            overflow-x: auto; white-space: nowrap; border-bottom: 1px solid var(--border-color);
-        }
-        .filter-bar::-webkit-scrollbar { display: none; }
-        .filter-btn {
-            padding: 8px 16px; border-radius: 20px; border: 1px solid #ddd;
-            background: white; font-size: 0.85rem; cursor: pointer;
-        }
-        .filter-btn.active { background: var(--text-main); color: white; border-color: var(--text-main); }
+        .category-section { padding: 20px 0; border-bottom: 6px solid var(--bg-gray); }
+        .category-header { display: flex; justify-content: space-between; align-items: center; padding: 0 15px 10px; }
+        .category-header h2 { font-size: 1rem; margin: 0; text-transform: uppercase; }
+        .view-more { font-size: 0.75rem; color: #888; text-decoration: none; }
 
-        /* SEÇÕES DE CATEGORIA */
-        .category-section { padding: 20px 0; border-bottom: 8px solid #f9f9f9; }
-        .category-title { 
-            padding: 0 15px; display: flex; justify-content: space-between; align-items: center;
-            margin-bottom: 15px;
-        }
-        .category-title h2 { font-size: 1.1rem; margin: 0; font-weight: 700; }
-        .view-all { font-size: 0.85rem; color: var(--text-muted); text-decoration: underline; }
+        .swiper-main { padding: 0 15px !important; }
+        .product-card { width: 170px; display: flex; flex-direction: column; }
+        .product-card.hidden { display: none !important; }
 
-        /* CARROSSEL DE PRODUTOS */
-        .swiper-products { padding: 0 15px !important; }
-        
-        .product-card { 
-            width: 160px; /* Tamanho mobile padrão */
-            transition: 0.3s; position: relative;
+        .img-container { 
+            width: 100%; aspect-ratio: 1/1; background: #f9f9f9; 
+            border-radius: 8px; overflow: hidden; position: relative;
         }
-        .img-wrapper {
-            background: #f8f8f8; border-radius: 4px; overflow: hidden;
-            aspect-ratio: 1/1; display: flex; align-items: center; justify-content: center;
-            cursor: zoom-in;
-        }
-        .img-wrapper img { width: 100%; height: 100%; object-fit: contain; }
-        
-        .product-info { padding: 10px 0; }
-        .product-name { font-size: 0.85rem; margin: 0; color: #333; height: 34px; overflow: hidden; }
-        .product-price { display: block; font-weight: 700; font-size: 1rem; margin-top: 5px; color: #000; }
-        .product-old-price { font-size: 0.75rem; color: #999; text-decoration: line-through; }
+        .swiper-pics { width: 100%; height: 100%; }
+        .swiper-pics img { width: 100%; height: 100%; object-fit: contain; cursor: zoom-in; }
 
-        /* RESPONSIVIDADE DESKTOP */
-        @media (min-width: 768px) {
-            .product-card { width: 220px; }
-            .category-section { max-width: 1200px; margin: 0 auto; }
-            #searchInput { max-width: 500px; }
-            .header-top { justify-content: center; gap: 50px; }
+        .card-info { padding: 10px 0; }
+        .card-info h3 { font-size: 0.8rem; margin: 0; height: 32px; overflow: hidden; color: #333; }
+        .model-text { font-size: 0.7rem; color: #999; margin: 3px 0; }
+        .price-now { font-size: 0.95rem; font-weight: bold; color: #000; display: block; margin-bottom: 8px; }
+
+        .btn-contact { 
+            display: block; background: var(--primary-green); color: #fff; 
+            text-align: center; padding: 7px; border-radius: 4px; 
+            text-decoration: none; font-size: 0.7rem; font-weight: bold; 
         }
 
-        footer { padding: 40px 15px; text-align: center; font-size: 0.8rem; color: #999; border-top: 1px solid #eee; }
+        @media (min-width: 768px) { .product-card { width: 210px; } }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="header-top">
-            <div class="brand"><h1>club<span>da</span>bola</h1></div>
+        <div class="brand">
+            <img src="logo1.png" alt="Logo">
+            <h1>Club da Bola</h1>
         </div>
-        <div class="search-container">
-            <input type="text" id="searchInput" placeholder="O que você está procurando?" onkeyup="searchProducts()">
+        <div class="search-wrapper">
+            <input type="text" id="searchInput" placeholder="Qual time você procura?" onkeyup="searchAndFilter()">
+        </div>
+        <div class="filter-wrapper">
+            <select id="categorySelect" onchange="searchAndFilter()">
+                <option value="todos">Todas as Categorias</option>
+                <option value="brasileirao">Brasileirão</option>
+                <option value="laliga">La Liga</option>
+                <option value="premier">Premier League</option>
+                <option value="selecoes">Seleções</option>
+            </select>
         </div>
     </header>
 
-    <div class="filter-bar" id="filterBar">
-        <button class="filter-btn active" onclick="filterTab('todos', this)">Tudo</button>
-        <button class="filter-btn" onclick="filterTab('brasileirao', this)">Brasileirão</button>
-        <button class="filter-btn" onclick="filterTab('laliga', this)">La Liga</button>
-        <button class="filter-btn" onclick="filterTab('selecoes', this)">Seleções</button>
-    </div>
-
-    <main id="mainContent">
+    <main id="catalog">
         <section class="category-section" data-cat="brasileirao">
-            <div class="category-title">
-                <h2>Brasileirão 2026</h2>
-                <a href="#" class="view-all">Ver mais</a>
-            </div>
-            <div class="swiper swiper-products">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide product-card">
-                        <div class="img-wrapper">
-                            <a href="Vasco/foto1.png" data-fancybox="gallery-vasco">
-                                <img src="Vasco/foto1.png" alt="Vasco">
-                            </a>
-                        </div>
-                        <div class="product-info">
-                            <p class="product-name">Camisa Vasco 2026 Tailandesa</p>
-                            <span class="product-old-price">R$ 189,00</span>
-                            <span class="product-price">R$ 169,00</span>
-                        </div>
-                    </div>
-                    <div class="swiper-slide product-card">
-                        <div class="img-wrapper">
-                            <a href="Flamengo/foto1.png" data-fancybox="gallery-fla">
-                                <img src="Flamengo/foto1.png" alt="Flamengo">
-                            </a>
-                        </div>
-                        <div class="product-info">
-                            <p class="product-name">Camisa Flamengo 2026 Tailandesa</p>
-                            <span class="product-price">R$ 169,00</span>
-                        </div>
-                    </div>
-                    </div>
+            <div class="category-header"><h2>Brasileirão</h2><a href="#" class="view-more">Ver tudo ></a></div>
+            <div class="swiper swiper-main">
+                <div class="swiper-wrapper" id="grid-brasileirao"></div>
             </div>
         </section>
 
         <section class="category-section" data-cat="laliga">
-            <div class="category-title">
-                <h2>La Liga</h2>
-                <a href="#" class="view-all">Ver mais</a>
+            <div class="category-header"><h2>La Liga</h2><a href="#" class="view-more">Ver tudo ></a></div>
+            <div class="swiper swiper-main">
+                <div class="swiper-wrapper" id="grid-laliga"></div>
             </div>
-            <div class="swiper swiper-products">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide product-card">
-                        <div class="img-wrapper">
-                            <a href="Real Madrid/foto1.png" data-fancybox="gallery-real">
-                                <img src="Real Madrid/foto1.png" alt="Real">
-                            </a>
-                        </div>
-                        <div class="product-info">
-                            <p class="product-name">Camisa Real Madrid 2026 Jogador</p>
-                            <span class="product-price">R$ 189,00</span>
-                        </div>
-                    </div>
-                </div>
+        </section>
+
+        <section class="category-section" data-cat="premier">
+            <div class="category-header"><h2>Premier League</h2><a href="#" class="view-more">Ver tudo ></a></div>
+            <div class="swiper swiper-main">
+                <div class="swiper-wrapper" id="grid-premier"></div>
+            </div>
+        </section>
+
+        <section class="category-section" data-cat="selecoes">
+            <div class="category-header"><h2>Seleções</h2><a href="#" class="view-more">Ver tudo ></a></div>
+            <div class="swiper swiper-main">
+                <div class="swiper-wrapper" id="grid-selecoes"></div>
             </div>
         </section>
     </main>
 
-    <footer>
-        <p>© 2026 Club da Bola. Todos os direitos reservados.</p>
-    </footer>
-
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
-    
     <script>
-        // Inicializa Carrosséis Horizontais
-        const initSwipers = () => {
-            new Swiper('.swiper-products', {
-                slidesPerView: 'auto',
-                spaceBetween: 15,
-                freeMode: true,
-                mousewheel: { forceToAxis: true },
+        const produtos = [
+            // BRASILEIRÃO
+            {id: 'vasco', nome: 'Vasco', cat: 'brasileirao', mod: 'Torcedor', preco: '169,00', pasta: 'Vasco'},
+            {id: 'flamengo', nome: 'Flamengo', cat: 'brasileirao', mod: 'Torcedor', preco: '169,00', pasta: 'Flamengo'},
+            {id: 'flamengo_jog', nome: 'Flamengo', cat: 'brasileirao', mod: 'Jogador', preco: '189,00', pasta: 'Flamengo Jogador'},
+            {id: 'palmeiras', nome: 'Palmeiras', cat: 'brasileirao', mod: 'Torcedor', preco: '169,00', pasta: 'Palmeiras'},
+            {id: 'palmeiras_jog', nome: 'Palmeiras', cat: 'brasileirao', mod: 'Jogador', preco: '189,00', pasta: 'Palmeiras Jogador'},
+            {id: 'corinthians', nome: 'Corinthians', cat: 'brasileirao', mod: 'Torcedor', preco: '169,00', pasta: 'Corinthians'},
+            {id: 'saopaulo', nome: 'São Paulo', cat: 'brasileirao', mod: 'Torcedor', preco: '169,00', pasta: 'Sao Paulo'},
+            {id: 'santos', nome: 'Santos', cat: 'brasileirao', mod: 'Torcedor', preco: '169,00', pasta: 'Santos'},
+            {id: 'botafogo', nome: 'Botafogo', cat: 'brasileirao', mod: 'Torcedor', preco: '169,00', pasta: 'Botafogo'},
+            {id: 'fluminense', nome: 'Fluminense', cat: 'brasileirao', mod: 'Torcedor', preco: '169,00', pasta: 'Fluminense'},
+            
+            // EUROPA
+            {id: 'realmadrid', nome: 'Real Madrid', cat: 'laliga', mod: 'Jogador', preco: '189,00', pasta: 'Real Madrid Jogador'},
+            {id: 'barcelona', nome: 'Barcelona', cat: 'laliga', mod: 'Jogador', preco: '189,00', pasta: 'Barcelona Jogador'},
+            {id: 'mancity', nome: 'Manchester City', cat: 'premier', mod: 'Torcedor', preco: '169,00', pasta: 'Manchester City'},
+
+            // SELEÇÕES
+            {id: 'brasil', nome: 'Brasil', cat: 'selecoes', mod: 'Torcedor', preco: '169,00', pasta: 'Selecoes', f1: 'brasil1.png', f2: 'brasil2.png'},
+            {id: 'argentina', nome: 'Argentina', cat: 'selecoes', mod: 'Torcedor', preco: '169,00', pasta: 'Selecoes', f1: 'argentina1.png', f2: 'argentina2.png'},
+            {id: 'espanha', nome: 'Espanha', cat: 'selecoes', mod: 'Torcedor', preco: '169,00', pasta: 'Selecoes', f1: 'espanha1.png', f2: 'espanha2.png'},
+            {id: 'inglaterra', nome: 'Inglaterra', cat: 'selecoes', mod: 'Torcedor', preco: '169,00', pasta: 'Selecoes', f1: 'inglaterra1.png', f2: 'inglaterra2.png'},
+            {id: 'portugal', nome: 'Portugal', cat: 'selecoes', mod: 'Torcedor', preco: '169,00', pasta: 'Selecoes', f1: 'portugal1.png', f2: 'portugal2.png'}
+        ];
+
+        function render() {
+            produtos.forEach(p => {
+                const f1 = p.f1 ? `${p.pasta}/${p.f1}` : `${p.pasta}/foto1.png`;
+                const f2 = p.f2 ? `${p.pasta}/${p.f2}` : `${p.pasta}/foto2.png`;
+                const html = `
+                <div class="swiper-slide product-card" data-name="${p.nome.toLowerCase()}" data-cat="${p.cat}">
+                    <div class="img-container">
+                        <div class="swiper swiper-pics">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide"><a href="${f1}" data-fancybox="${p.id}"><img src="${f1}"></a></div>
+                                <div class="swiper-slide"><a href="${f2}" data-fancybox="${p.id}"><img src="${f2}"></a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-info">
+                        <h3>Camisa ${p.nome} 2026</h3>
+                        <p class="model-text">Modelo ${p.mod} Tailandesa</p>
+                        <span class="price-now">R$ ${p.preco}</span>
+                        <a href="https://wa.me/5591993249580" class="btn-contact">Entre em contato</a>
+                    </div>
+                </div>`;
+                document.getElementById(`grid-${p.cat}`).insertAdjacentHTML('beforeend', html);
             });
         }
 
-        // Configuração do Zoom (Fancybox)
-        Fancybox.bind("[data-fancybox]", {
-            Images: { Panzoom: { maxScale: 3 } }, // Permite muito zoom
-            Toolbar: { display: { left: ["infobar"], right: ["iterateZoom", "close"] } }
-        });
+        render();
 
-        // Filtro por Abas
-        function filterTab(category, btn) {
-            // Estilo do botão
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
+        // Inicia Swipers
+        new Swiper('.swiper-main', { slidesPerView: 'auto', spaceBetween: 15, freeMode: true });
+        new Swiper('.swiper-pics', { loop: true });
+        Fancybox.bind("[data-fancybox]", { Images: { Panzoom: { maxScale: 3 } } });
 
-            // Lógica de exibição
-            document.querySelectorAll('.category-section').forEach(section => {
-                if(category === 'todos' || section.getAttribute('data-cat') === category) {
-                    section.style.display = 'block';
+        // Nova Lógica de Busca e Filtro (Apaga o que não coincide)
+        function searchAndFilter() {
+            const term = document.getElementById('searchInput').value.toLowerCase();
+            const selectedCat = document.getElementById('categorySelect').value;
+            const cards = document.querySelectorAll('.product-card');
+
+            cards.forEach(card => {
+                const name = card.dataset.name;
+                const cat = card.dataset.cat;
+                
+                const matchesSearch = name.includes(term);
+                const matchesCat = (selectedCat === 'todos' || cat === selectedCat);
+
+                if (matchesSearch && matchesCat) {
+                    card.classList.remove('hidden');
                 } else {
-                    section.style.display = 'none';
+                    card.classList.add('hidden');
                 }
             });
-        }
 
-        // Busca simples
-        function searchProducts() {
-            let input = document.getElementById('searchInput').value.toLowerCase();
-            let cards = document.querySelectorAll('.product-card');
-            
-            cards.forEach(card => {
-                let name = card.querySelector('.product-name').innerText.toLowerCase();
-                card.style.opacity = name.includes(input) ? "1" : "0.2";
+            // Oculta a seção inteira se não houver cards visíveis nela
+            document.querySelectorAll('.category-section').forEach(section => {
+                const visibleCards = section.querySelectorAll('.product-card:not(.hidden)');
+                section.style.display = visibleCards.length > 0 ? 'block' : 'none';
             });
         }
-
-        window.onload = initSwipers;
     </script>
 </body>
 </html>
