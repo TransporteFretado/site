@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Club da Bola - Vitrine Oficial</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root { --primary-green: #25d366; --bg-gray: #f4f4f4; --dark: #121212; }
@@ -16,7 +17,7 @@
         .brand img { height: 35px; }
         .brand h1 { margin: 0; font-family: 'Oswald', sans-serif; font-size: 1.5rem; text-transform: uppercase; }
         .search-wrapper, .filter-container { width: 100%; max-width: 350px; }
-        #searchInput, #categorySelect, #modelSelect { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #ddd; outline: none; margin-bottom: 8px; }
+        #searchInput, #categorySelect, #modelSelect { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #ddd; outline: none; margin-bottom: 8px; box-sizing: border-box; }
         .filter-container { display: flex; gap: 10px; }
 
         /* Grid de Produtos */
@@ -45,8 +46,9 @@
         .modal-header { padding: 15px; display: flex; align-items: center; border-bottom: 1px solid #eee; }
         .btn-back { background: none; border: none; font-size: 1.5rem; cursor: pointer; padding-right: 15px; }
         
-        .modal-content { flex: 1; overflow-y: auto; padding-bottom: 100px; }
+        .modal-content { flex: 1; overflow-y: auto; padding-bottom: 110px; }
         .modal-swiper { width: 100%; aspect-ratio: 1/1; background: #f4f4f4; }
+        .modal-swiper img { width: 100%; height: 100%; object-fit: contain; cursor: zoom-in; }
         .modal-details { padding: 20px; }
         .badge-premium { background: var(--dark); color: #fff; padding: 4px 8px; font-size: 0.6rem; text-transform: uppercase; border-radius: 3px; }
         
@@ -67,6 +69,7 @@
             display: flex; align-items: center; justify-content: center; gap: 10px;
             background: #ccc; color: #fff; width: 100%; padding: 15px; 
             border-radius: 8px; text-decoration: none; font-weight: bold; pointer-events: none;
+            text-transform: uppercase; font-size: 0.9rem;
         }
         .btn-wpp.active { background: var(--primary-green); pointer-events: auto; }
 
@@ -77,16 +80,27 @@
 
     <header>
         <div class="brand"><img src="logo1.png"> <h1>Club da Bola</h1></div>
-        <div class="search-wrapper"><input type="text" id="searchInput" placeholder="Buscar meu time..." onkeyup="searchAndFilter()"></div>
+        <div class="search-wrapper"><input type="text" id="searchInput" placeholder="Qual time você procura?" onkeyup="searchAndFilter()"></div>
         <div class="filter-container">
-            <select id="categorySelect" onchange="searchAndFilter()"><option value="todos">Ligas</option><option value="brasileirao">Brasileirão</option><option value="laliga">La Liga</option><option value="selecoes">Seleções</option></select>
-            <select id="modelSelect" onchange="searchAndFilter()"><option value="todos">Modelos</option><option value="Torcedor">Torcedor</option><option value="Jogador">Jogador</option></select>
+            <select id="categorySelect" onchange="searchAndFilter()">
+                <option value="todos">Categorias</option>
+                <option value="brasileirao">Brasileirão</option>
+                <option value="laliga">La Liga</option>
+                <option value="premier">Premier League</option>
+                <option value="selecoes">Seleções</option>
+            </select>
+            <select id="modelSelect" onchange="searchAndFilter()">
+                <option value="todos">Modelos</option>
+                <option value="Torcedor">Torcedor</option>
+                <option value="Jogador">Jogador</option>
+            </select>
         </div>
     </header>
 
     <main id="catalog">
         <section class="category-section" data-cat="brasileirao"><div class="category-header"><h2>Brasileirão</h2></div><div class="swiper swiper-main"><div class="swiper-wrapper" id="grid-brasileirao"></div></div></section>
-        <section class="category-section" data-cat="laliga"><div class="category-header"><h2>Internacionais</h2></div><div class="swiper swiper-main"><div class="swiper-wrapper" id="grid-laliga"></div></div></section>
+        <section class="category-section" data-cat="laliga"><div class="category-header"><h2>La Liga</h2></div><div class="swiper swiper-main"><div class="swiper-wrapper" id="grid-laliga"></div></div></section>
+        <section class="category-section" data-cat="premier"><div class="category-header"><h2>Premier League</h2></div><div class="swiper swiper-main"><div class="swiper-wrapper" id="grid-premier"></div></div></section>
         <section class="category-section" data-cat="selecoes"><div class="category-header"><h2>Seleções</h2></div><div class="swiper swiper-main"><div class="swiper-wrapper" id="grid-selecoes"></div></div></section>
     </main>
 
@@ -95,20 +109,29 @@
             <button class="btn-back" onclick="closeModal()">✕</button>
             <span style="font-weight: bold; text-transform: uppercase;">Detalhes do Produto</span>
         </div>
-        <div class="modal-content" id="modalBody">
-            </div>
+        <div class="modal-content" id="modalBody"></div>
         <div class="modal-footer">
-            <a href="#" id="wppLink" class="btn-wpp">SELECIONE O TAMANHO</a>
+            <a href="#" id="wppLink" target="_blank" class="btn-wpp">SELECIONE O TAMANHO</a>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
     <script>
         const produtos = [
             {id: 'vasco', nome: 'Vasco', cat: 'brasileirao', mod: 'Torcedor', pasta: 'Vasco'},
             {id: 'flamengo', nome: 'Flamengo', cat: 'brasileirao', mod: 'Torcedor', pasta: 'Flamengo'},
             {id: 'flamengo_jog', nome: 'Flamengo', cat: 'brasileirao', mod: 'Jogador', pasta: 'Flamengo Jogador'},
-            {id: 'brasil', nome: 'Brasil', cat: 'selecoes', mod: 'Torcedor', pasta: 'Selecoes', f1: 'brasil1.png', f2: 'brasil2.png'}
+            {id: 'palmeiras', nome: 'Palmeiras', cat: 'brasileirao', mod: 'Torcedor', pasta: 'Palmeiras'},
+            {id: 'palmeiras_jog', nome: 'Palmeiras', cat: 'brasileirao', mod: 'Jogador', pasta: 'Palmeiras Jogador'},
+            {id: 'corinthians', nome: 'Corinthians', cat: 'brasileirao', mod: 'Torcedor', pasta: 'Corinthians'},
+            {id: 'saopaulo', nome: 'São Paulo', cat: 'brasileirao', mod: 'Torcedor', pasta: 'Sao Paulo'},
+            {id: 'realmadrid', nome: 'Real Madrid', cat: 'laliga', mod: 'Jogador', pasta: 'Real Madrid Jogador'},
+            {id: 'barcelona', nome: 'Barcelona', cat: 'laliga', mod: 'Jogador', pasta: 'Barcelona Jogador'},
+            {id: 'mancity', nome: 'Manchester City', cat: 'premier', mod: 'Torcedor', pasta: 'Manchester City'},
+            {id: 'brasil', nome: 'Brasil', cat: 'selecoes', mod: 'Torcedor', pasta: 'Selecoes', f1: 'brasil1.png', f2: 'brasil2.png'},
+            {id: 'argentina', nome: 'Argentina', cat: 'selecoes', mod: 'Torcedor', pasta: 'Selecoes', f1: 'argentina1.png', f2: 'argentina2.png'},
+            {id: 'portugal', nome: 'Portugal', cat: 'selecoes', mod: 'Torcedor', pasta: 'Selecoes', f1: 'portugal1.png', f2: 'portugal2.png'}
         ];
 
         let selectedSize = null;
@@ -123,7 +146,7 @@
                     <div class="card-info">
                         <h3>Camisa ${p.nome}</h3>
                         <p style="font-size:0.7rem; color:#888; margin: 4px 0;">Modelo ${p.mod}</p>
-                        <span class="price-now">R$ ${p.mod === 'Torcedor' ? '169,00' : '189,00'}</span>
+                        <span class="price-now">R$ ${(p.mod === 'Jogador' || p.cat === 'selecoes') ? '189,00' : '169,00'}</span>
                     </div>
                 </div>`;
                 document.getElementById(`grid-${p.cat}`).insertAdjacentHTML('beforeend', html);
@@ -143,8 +166,8 @@
             document.getElementById('modalBody').innerHTML = `
                 <div class="swiper modal-swiper">
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide"><img src="${img1}" style="width:100%"></div>
-                        <div class="swiper-slide"><img src="${img2}" style="width:100%"></div>
+                        <div class="swiper-slide"><a href="${img1}" data-fancybox="gallery"><img src="${img1}"></a></div>
+                        <div class="swiper-slide"><a href="${img2}" data-fancybox="gallery"><img src="${img2}"></a></div>
                     </div>
                 </div>
                 <div class="modal-details">
@@ -154,10 +177,12 @@
                     <div style="margin: 15px 0">
                         <span style="text-decoration:line-through; color:#999; font-size:0.9rem">R$ ${pDe}</span><br>
                         <span style="font-size:1.5rem; font-weight:bold; color:var(--dark)">R$ ${pPor}</span>
-                        <p style="font-size:0.8rem; color:var(--primary-green)">Frete Grátis Adiclub</p>
+                        <p style="font-size:0.8rem; color:#d9534f; font-weight:bold; margin-top:5px;">Frete Grátis Acima de 5 Peças</p>
                     </div>
                     <hr border="0" style="border-top:1px solid #eee">
-                    <p style="font-weight:bold; margin-top:20px">SELECIONE O TAMANHO</p>
+                    <p style="font-weight:bold; margin-top:20px; display:flex; align-items:center; gap:5px;">
+                        SELECIONE O TAMANHO <span style="font-weight:normal; color:#aaa; font-size:0.75rem;">(e entre em contato)</span>
+                    </p>
                     <div class="size-grid">
                         <div class="size-btn" onclick="selectSize(this, 'P')">P</div>
                         <div class="size-btn" onclick="selectSize(this, 'M')">M</div>
@@ -170,6 +195,7 @@
             document.getElementById('productModal').classList.add('active');
             document.body.style.overflow = 'hidden';
             new Swiper('.modal-swiper', { loop: true });
+            Fancybox.bind("[data-fancybox]", { });
             updateWppBtn();
         }
 
@@ -184,12 +210,15 @@
             const btn = document.getElementById('wppLink');
             if (selectedSize) {
                 btn.classList.add('active');
-                btn.innerHTML = `PEDIR AGORA (TAMANHO ${selectedSize})`;
-                const msg = encodeURIComponent(`Olá! Quero detalhes da camisa do ${currentProduct.nome} (${currentProduct.mod}), Tamanho ${selectedSize}.\nFoto: ${window.location.origin}/${currentProduct.pasta}/foto1.png`);
-                btn.href = `https://wa.me/5591993249580?text=${msg}`;
+                btn.innerHTML = `ENTRE EM CONTATO (${selectedSize})`;
+                
+                // Correção do Link: Usamos apenas o nome e tamanho para evitar erros de URL longa com o domínio local
+                const textMsg = `Olá! Quero detalhes da camisa do ${currentProduct.nome} (${currentProduct.mod}) Tailandesa, Tamanho ${selectedSize}.`;
+                btn.href = `https://api.whatsapp.com/send?phone=5591993249580&text=${encodeURIComponent(textMsg)}`;
             } else {
                 btn.classList.remove('active');
                 btn.innerHTML = "SELECIONE O TAMANHO";
+                btn.href = "#";
             }
         }
 
@@ -205,6 +234,12 @@
             document.querySelectorAll('.product-card').forEach(card => {
                 const match = card.dataset.name.includes(term) && (selCat === 'todos' || card.dataset.cat === selCat) && (selMod === 'todos' || card.dataset.mod === selMod);
                 card.classList.toggle('hidden', !match);
+            });
+            
+            // Oculta seções vazias
+            document.querySelectorAll('.category-section').forEach(section => {
+                const visible = section.querySelectorAll('.product-card:not(.hidden)');
+                section.style.display = visible.length > 0 ? 'block' : 'none';
             });
         }
 
