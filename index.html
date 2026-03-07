@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Club da Bola - Vitrine Oficial</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Roboto', sans-serif; background-color: #f0f2f5; margin: 0; padding: 0; }
@@ -23,7 +24,7 @@
         .card:hover { transform: translateY(-5px); }
         .card.hidden { display: none !important; }
         .swiper-images { width: 100%; height: 280px; background-color: #fff; position: relative; }
-        .swiper-images img { width: 100%; height: 100%; object-fit: contain; display: block; }
+        .swiper-images img { width: 100%; height: 100%; object-fit: contain; display: block; cursor: zoom-in; }
         .content { padding: 15px; text-align: left; }
         h2 { margin: 0; color: #333; font-size: 0.95rem; line-height: 1.2; height: 38px; overflow: hidden; }
         .modelo-info { color: #777; font-size: 0.75rem; margin: 8px 0; }
@@ -63,145 +64,217 @@
         <div class="product-grid" id="productGrid">
             
             <div class="card" data-name="vasco" data-category="brasileirao">
-                <div class="swiper swiper-images"><div class="swiper-wrapper"><div class="swiper-slide"><img src="Vasco/foto1.png"></div><div class="swiper-slide"><img src="Vasco/foto2.png"></div></div><div class="swiper-pagination"></div></div>
+                <div class="swiper swiper-images"><div class="swiper-wrapper">
+                    <div class="swiper-slide"><a href="Vasco/foto1.png" data-fancybox="vasco"><img src="Vasco/foto1.png"></a></div>
+                    <div class="swiper-slide"><a href="Vasco/foto2.png" data-fancybox="vasco"><img src="Vasco/foto2.png"></a></div>
+                </div><div class="swiper-pagination"></div></div>
                 <div class="content"><h2>Camisa Vasco 2026 💢</h2><p class="modelo-info">Modelo Torcedor Tailandesa</p>
                 <div class="price-area"><span class="old-price">R$ 189</span><span class="new-price">R$ 169,00</span></div><a href="https://wa.me/5591993249580" class="btn-whatsapp">Entre em contato</a></div>
             </div>
 
             <div class="card" data-name="flamengo" data-category="brasileirao">
-                <div class="swiper swiper-images"><div class="swiper-wrapper"><div class="swiper-slide"><img src="Flamengo/foto1.png"></div><div class="swiper-slide"><img src="Flamengo/foto2.png"></div></div><div class="swiper-pagination"></div></div>
+                <div class="swiper swiper-images"><div class="swiper-wrapper">
+                    <div class="swiper-slide"><a href="Flamengo/foto1.png" data-fancybox="flamengo"><img src="Flamengo/foto1.png"></a></div>
+                    <div class="swiper-slide"><a href="Flamengo/foto2.png" data-fancybox="flamengo"><img src="Flamengo/foto2.png"></a></div>
+                </div><div class="swiper-pagination"></div></div>
                 <div class="content"><h2>Camisa Flamengo 2026 🔴⚫</h2><p class="modelo-info">Modelo Torcedor Tailandesa</p>
                 <div class="price-area"><span class="old-price">R$ 189</span><span class="new-price">R$ 169,00</span></div><a href="https://wa.me/5591993249580" class="btn-whatsapp">Entre em contato</a></div>
             </div>
 
             <div class="card" data-name="palmeiras" data-category="brasileirao">
-                <div class="swiper swiper-images"><div class="swiper-wrapper"><div class="swiper-slide"><img src="Palmeiras/foto1.png"></div><div class="swiper-slide"><img src="Palmeiras/foto2.png"></div></div><div class="swiper-pagination"></div></div>
+                <div class="swiper swiper-images"><div class="swiper-wrapper">
+                    <div class="swiper-slide"><a href="Palmeiras/foto1.png" data-fancybox="palmeiras"><img src="Palmeiras/foto1.png"></a></div>
+                    <div class="swiper-slide"><a href="Palmeiras/foto2.png" data-fancybox="palmeiras"><img src="Palmeiras/foto2.png"></a></div>
+                </div><div class="swiper-pagination"></div></div>
                 <div class="content"><h2>Camisa Palmeiras 2026 🐷</h2><p class="modelo-info">Modelo Torcedor Tailandesa</p>
                 <div class="price-area"><span class="old-price">R$ 189</span><span class="new-price">R$ 169,00</span></div><a href="https://wa.me/5591993249580" class="btn-whatsapp">Entre em contato</a></div>
             </div>
 
             <div class="card" data-name="corinthians" data-category="brasileirao">
-                <div class="swiper swiper-images"><div class="swiper-wrapper"><div class="swiper-slide"><img src="Corinthians/foto1.png"></div><div class="swiper-slide"><img src="Corinthians/foto2.png"></div></div><div class="swiper-pagination"></div></div>
+                <div class="swiper swiper-images"><div class="swiper-wrapper">
+                    <div class="swiper-slide"><a href="Corinthians/foto1.png" data-fancybox="corinthians"><img src="Corinthians/foto1.png"></a></div>
+                    <div class="swiper-slide"><a href="Corinthians/foto2.png" data-fancybox="corinthians"><img src="Corinthians/foto2.png"></a></div>
+                </div><div class="swiper-pagination"></div></div>
                 <div class="content"><h2>Camisa Corinthians 2026 🦅</h2><p class="modelo-info">Modelo Torcedor Tailandesa</p>
                 <div class="price-area"><span class="old-price">R$ 189</span><span class="new-price">R$ 169,00</span></div><a href="https://wa.me/5591993249580" class="btn-whatsapp">Entre em contato</a></div>
             </div>
 
             <div class="card" data-name="sao paulo" data-category="brasileirao">
-                <div class="swiper swiper-images"><div class="swiper-wrapper"><div class="swiper-slide"><img src="Sao Paulo/foto1.png"></div><div class="swiper-slide"><img src="Sao Paulo/foto2.png"></div></div><div class="swiper-pagination"></div></div>
+                <div class="swiper swiper-images"><div class="swiper-wrapper">
+                    <div class="swiper-slide"><a href="Sao Paulo/foto1.png" data-fancybox="saopaulo"><img src="Sao Paulo/foto1.png"></a></div>
+                    <div class="swiper-slide"><a href="Sao Paulo/foto2.png" data-fancybox="saopaulo"><img src="Sao Paulo/foto2.png"></a></div>
+                </div><div class="swiper-pagination"></div></div>
                 <div class="content"><h2>Camisa São Paulo 2026 🇾🇪</h2><p class="modelo-info">Modelo Torcedor Tailandesa</p>
                 <div class="price-area"><span class="old-price">R$ 189</span><span class="new-price">R$ 169,00</span></div><a href="https://wa.me/5591993249580" class="btn-whatsapp">Entre em contato</a></div>
             </div>
 
             <div class="card" data-name="santos" data-category="brasileirao">
-                <div class="swiper swiper-images"><div class="swiper-wrapper"><div class="swiper-slide"><img src="Santos/foto1.png"></div><div class="swiper-slide"><img src="Santos/foto2.png"></div></div><div class="swiper-pagination"></div></div>
+                <div class="swiper swiper-images"><div class="swiper-wrapper">
+                    <div class="swiper-slide"><a href="Santos/foto1.png" data-fancybox="santos"><img src="Santos/foto1.png"></a></div>
+                    <div class="swiper-slide"><a href="Santos/foto2.png" data-fancybox="santos"><img src="Santos/foto2.png"></a></div>
+                </div><div class="swiper-pagination"></div></div>
                 <div class="content"><h2>Camisa Santos 2026 🐳</h2><p class="modelo-info">Modelo Torcedor Tailandesa</p>
                 <div class="price-area"><span class="old-price">R$ 189</span><span class="new-price">R$ 169,00</span></div><a href="https://wa.me/5591993249580" class="btn-whatsapp">Entre em contato</a></div>
             </div>
 
             <div class="card" data-name="botafogo" data-category="brasileirao">
-                <div class="swiper swiper-images"><div class="swiper-wrapper"><div class="swiper-slide"><img src="Botafogo/foto1.png"></div><div class="swiper-slide"><img src="Botafogo/foto2.png"></div></div><div class="swiper-pagination"></div></div>
+                <div class="swiper swiper-images"><div class="swiper-wrapper">
+                    <div class="swiper-slide"><a href="Botafogo/foto1.png" data-fancybox="botafogo"><img src="Botafogo/foto1.png"></a></div>
+                    <div class="swiper-slide"><a href="Botafogo/foto2.png" data-fancybox="botafogo"><img src="Botafogo/foto2.png"></a></div>
+                </div><div class="swiper-pagination"></div></div>
                 <div class="content"><h2>Camisa Botafogo 2026 ⭐</h2><p class="modelo-info">Modelo Torcedor Tailandesa</p>
                 <div class="price-area"><span class="old-price">R$ 189</span><span class="new-price">R$ 169,00</span></div><a href="https://wa.me/5591993249580" class="btn-whatsapp">Entre em contato</a></div>
             </div>
 
             <div class="card" data-name="fluminense" data-category="brasileirao">
-                <div class="swiper swiper-images"><div class="swiper-wrapper"><div class="swiper-slide"><img src="Fluminense/foto1.png"></div><div class="swiper-slide"><img src="Fluminense/foto2.png"></div></div><div class="swiper-pagination"></div></div>
+                <div class="swiper swiper-images"><div class="swiper-wrapper">
+                    <div class="swiper-slide"><a href="Fluminense/foto1.png" data-fancybox="fluminense"><img src="Fluminense/foto1.png"></a></div>
+                    <div class="swiper-slide"><a href="Fluminense/foto2.png" data-fancybox="fluminense"><img src="Fluminense/foto2.png"></a></div>
+                </div><div class="swiper-pagination"></div></div>
                 <div class="content"><h2>Camisa Fluminense 2026 🇭🇺</h2><p class="modelo-info">Modelo Torcedor Tailandesa</p>
                 <div class="price-area"><span class="old-price">R$ 189</span><span class="new-price">R$ 169,00</span></div><a href="https://wa.me/5591993249580" class="btn-whatsapp">Entre em contato</a></div>
             </div>
 
             <div class="card" data-name="cruzeiro" data-category="brasileirao">
-                <div class="swiper swiper-images"><div class="swiper-wrapper"><div class="swiper-slide"><img src="Cruzeiro/foto1.png"></div><div class="swiper-slide"><img src="Cruzeiro/foto2.png"></div></div><div class="swiper-pagination"></div></div>
+                <div class="swiper swiper-images"><div class="swiper-wrapper">
+                    <div class="swiper-slide"><a href="Cruzeiro/foto1.png" data-fancybox="cruzeiro"><img src="Cruzeiro/foto1.png"></a></div>
+                    <div class="swiper-slide"><a href="Cruzeiro/foto2.png" data-fancybox="cruzeiro"><img src="Cruzeiro/foto2.png"></a></div>
+                </div><div class="swiper-pagination"></div></div>
                 <div class="content"><h2>Camisa Cruzeiro 2026 🦊</h2><p class="modelo-info">Modelo Torcedor Tailandesa</p>
                 <div class="price-area"><span class="old-price">R$ 189</span><span class="new-price">R$ 169,00</span></div><a href="https://wa.me/5591993249580" class="btn-whatsapp">Entre em contato</a></div>
             </div>
 
             <div class="card" data-name="atletico mineiro galo" data-category="brasileirao">
-                <div class="swiper swiper-images"><div class="swiper-wrapper"><div class="swiper-slide"><img src="Atletico Mineiro/foto1.png"></div><div class="swiper-slide"><img src="Atletico Mineiro/foto2.png"></div></div><div class="swiper-pagination"></div></div>
+                <div class="swiper swiper-images"><div class="swiper-wrapper">
+                    <div class="swiper-slide"><a href="Atletico Mineiro/foto1.png" data-fancybox="atleticomg"><img src="Atletico Mineiro/foto1.png"></a></div>
+                    <div class="swiper-slide"><a href="Atletico Mineiro/foto2.png" data-fancybox="atleticomg"><img src="Atletico Mineiro/foto2.png"></a></div>
+                </div><div class="swiper-pagination"></div></div>
                 <div class="content"><h2>Camisa Atlético-MG 2026 🐔</h2><p class="modelo-info">Modelo Torcedor Tailandesa</p>
                 <div class="price-area"><span class="old-price">R$ 189</span><span class="new-price">R$ 169,00</span></div><a href="https://wa.me/5591993249580" class="btn-whatsapp">Entre em contato</a></div>
             </div>
 
             <div class="card" data-name="internacional inter" data-category="brasileirao">
-                <div class="swiper swiper-images"><div class="swiper-wrapper"><div class="swiper-slide"><img src="Internacional/foto1.png"></div><div class="swiper-slide"><img src="Internacional/foto2.png"></div></div><div class="swiper-pagination"></div></div>
+                <div class="swiper swiper-images"><div class="swiper-wrapper">
+                    <div class="swiper-slide"><a href="Internacional/foto1.png" data-fancybox="inter"><img src="Internacional/foto1.png"></a></div>
+                    <div class="swiper-slide"><a href="Internacional/foto2.png" data-fancybox="inter"><img src="Internacional/foto2.png"></a></div>
+                </div><div class="swiper-pagination"></div></div>
                 <div class="content"><h2>Camisa Internacional 2026 🇦🇹</h2><p class="modelo-info">Modelo Torcedor Tailandesa</p>
                 <div class="price-area"><span class="old-price">R$ 189</span><span class="new-price">R$ 169,00</span></div><a href="https://wa.me/5591993249580" class="btn-whatsapp">Entre em contato</a></div>
             </div>
 
             <div class="card" data-name="gremio" data-category="brasileirao">
-                <div class="swiper swiper-images"><div class="swiper-wrapper"><div class="swiper-slide"><img src="Gremio/foto1.png"></div><div class="swiper-slide"><img src="Gremio/foto2.png"></div></div><div class="swiper-pagination"></div></div>
+                <div class="swiper swiper-images"><div class="swiper-wrapper">
+                    <div class="swiper-slide"><a href="Gremio/foto1.png" data-fancybox="gremio"><img src="Gremio/foto1.png"></a></div>
+                    <div class="swiper-slide"><a href="Gremio/foto2.png" data-fancybox="gremio"><img src="Gremio/foto2.png"></a></div>
+                </div><div class="swiper-pagination"></div></div>
                 <div class="content"><h2>Camisa Grêmio 2026 🇪🇪</h2><p class="modelo-info">Modelo Torcedor Tailandesa</p>
                 <div class="price-area"><span class="old-price">R$ 189</span><span class="new-price">R$ 169,00</span></div><a href="https://wa.me/5591993249580" class="btn-whatsapp">Entre em contato</a></div>
             </div>
 
             <div class="card" data-name="bahia" data-category="brasileirao">
-                <div class="swiper swiper-images"><div class="swiper-wrapper"><div class="swiper-slide"><img src="Bahia/foto1.png"></div><div class="swiper-slide"><img src="Bahia/foto2.png"></div></div><div class="swiper-pagination"></div></div>
+                <div class="swiper swiper-images"><div class="swiper-wrapper">
+                    <div class="swiper-slide"><a href="Bahia/foto1.png" data-fancybox="bahia"><img src="Bahia/foto1.png"></a></div>
+                    <div class="swiper-slide"><a href="Bahia/foto2.png" data-fancybox="bahia"><img src="Bahia/foto2.png"></a></div>
+                </div><div class="swiper-pagination"></div></div>
                 <div class="content"><h2>Camisa Bahia 2026 🔵🔴⚪</h2><p class="modelo-info">Modelo Torcedor Tailandesa</p>
                 <div class="price-area"><span class="old-price">R$ 189</span><span class="new-price">R$ 169,00</span></div><a href="https://wa.me/5591993249580" class="btn-whatsapp">Entre em contato</a></div>
             </div>
 
             <div class="card" data-name="vitoria" data-category="brasileirao">
-                <div class="swiper swiper-images"><div class="swiper-wrapper"><div class="swiper-slide"><img src="Vitoria/foto1.png"></div><div class="swiper-slide"><img src="Vitoria/foto2.png"></div></div><div class="swiper-pagination"></div></div>
+                <div class="swiper swiper-images"><div class="swiper-wrapper">
+                    <div class="swiper-slide"><a href="Vitoria/foto1.png" data-fancybox="vitoria"><img src="Vitoria/foto1.png"></a></div>
+                    <div class="swiper-slide"><a href="Vitoria/foto2.png" data-fancybox="vitoria"><img src="Vitoria/foto2.png"></a></div>
+                </div><div class="swiper-pagination"></div></div>
                 <div class="content"><h2>Camisa Vitória 2026 🔴⚫</h2><p class="modelo-info">Modelo Torcedor Tailandesa</p>
                 <div class="price-area"><span class="old-price">R$ 189</span><span class="new-price">R$ 169,00</span></div><a href="https://wa.me/5591993249580" class="btn-whatsapp">Entre em contato</a></div>
             </div>
 
             <div class="card" data-name="fortaleza" data-category="brasileirao">
-                <div class="swiper swiper-images"><div class="swiper-wrapper"><div class="swiper-slide"><img src="Fortaleza/foto1.png"></div><div class="swiper-slide"><img src="Fortaleza/foto2.png"></div></div><div class="swiper-pagination"></div></div>
+                <div class="swiper swiper-images"><div class="swiper-wrapper">
+                    <div class="swiper-slide"><a href="Fortaleza/foto1.png" data-fancybox="fortaleza"><img src="Fortaleza/foto1.png"></a></div>
+                    <div class="swiper-slide"><a href="Fortaleza/foto2.png" data-fancybox="fortaleza"><img src="Fortaleza/foto2.png"></a></div>
+                </div><div class="swiper-pagination"></div></div>
                 <div class="content"><h2>Camisa Fortaleza 2026 🦁</h2><p class="modelo-info">Modelo Torcedor Tailandesa</p>
                 <div class="price-area"><span class="old-price">R$ 189</span><span class="new-price">R$ 169,00</span></div><a href="https://wa.me/5591993249580" class="btn-whatsapp">Entre em contato</a></div>
             </div>
 
             <div class="card" data-name="ceara" data-category="brasileirao">
-                <div class="swiper swiper-images"><div class="swiper-wrapper"><div class="swiper-slide"><img src="Ceara/foto1.png"></div><div class="swiper-slide"><img src="Ceara/foto2.png"></div></div><div class="swiper-pagination"></div></div>
+                <div class="swiper swiper-images"><div class="swiper-wrapper">
+                    <div class="swiper-slide"><a href="Ceara/foto1.png" data-fancybox="ceara"><img src="Ceara/foto1.png"></a></div>
+                    <div class="swiper-slide"><a href="Ceara/foto2.png" data-fancybox="ceara"><img src="Ceara/foto2.png"></a></div>
+                </div><div class="swiper-pagination"></div></div>
                 <div class="content"><h2>Camisa Ceará 2026 ⚫⚪</h2><p class="modelo-info">Modelo Torcedor Tailandesa</p>
                 <div class="price-area"><span class="old-price">R$ 189</span><span class="new-price">R$ 169,00</span></div><a href="https://wa.me/5591993249580" class="btn-whatsapp">Entre em contato</a></div>
             </div>
 
             <div class="card" data-name="remo" data-category="brasileirao">
-                <div class="swiper swiper-images"><div class="swiper-wrapper"><div class="swiper-slide"><img src="Remo/foto1.png"></div><div class="swiper-slide"><img src="Remo/foto2.png"></div></div><div class="swiper-pagination"></div></div>
+                <div class="swiper swiper-images"><div class="swiper-wrapper">
+                    <div class="swiper-slide"><a href="Remo/foto1.png" data-fancybox="remo"><img src="Remo/foto1.png"></a></div>
+                    <div class="swiper-slide"><a href="Remo/foto2.png" data-fancybox="remo"><img src="Remo/foto2.png"></a></div>
+                </div><div class="swiper-pagination"></div></div>
                 <div class="content"><h2>Camisa Remo 2026 🦁</h2><p class="modelo-info">Modelo Torcedor Tailandesa</p>
                 <div class="price-area"><span class="old-price">R$ 189</span><span class="new-price">R$ 169,00</span></div><a href="https://wa.me/5591993249580" class="btn-whatsapp">Entre em contato</a></div>
             </div>
 
             <div class="card" data-name="paysandu" data-category="brasileirao">
-                <div class="swiper swiper-images"><div class="swiper-wrapper"><div class="swiper-slide"><img src="Paysandu/foto1.png"></div><div class="swiper-slide"><img src="Paysandu/foto2.png"></div></div><div class="swiper-pagination"></div></div>
+                <div class="swiper swiper-images"><div class="swiper-wrapper">
+                    <div class="swiper-slide"><a href="Paysandu/foto1.png" data-fancybox="paysandu"><img src="Paysandu/foto1.png"></a></div>
+                    <div class="swiper-slide"><a href="Paysandu/foto2.png" data-fancybox="paysandu"><img src="Paysandu/foto2.png"></a></div>
+                </div><div class="swiper-pagination"></div></div>
                 <div class="content"><h2>Camisa Paysandu 2026 🐺</h2><p class="modelo-info">Modelo Torcedor Tailandesa</p>
                 <div class="price-area"><span class="old-price">R$ 189</span><span class="new-price">R$ 169,00</span></div><a href="https://wa.me/5591993249580" class="btn-whatsapp">Entre em contato</a></div>
             </div>
 
             <div class="card" data-name="mirassol" data-category="brasileirao">
-                <div class="swiper swiper-images"><div class="swiper-wrapper"><div class="swiper-slide"><img src="Mirassol/foto1.png"></div><div class="swiper-slide"><img src="Mirassol/foto2.png"></div></div><div class="swiper-pagination"></div></div>
+                <div class="swiper swiper-images"><div class="swiper-wrapper">
+                    <div class="swiper-slide"><a href="Mirassol/foto1.png" data-fancybox="mirassol"><img src="Mirassol/foto1.png"></a></div>
+                    <div class="swiper-slide"><a href="Mirassol/foto2.png" data-fancybox="mirassol"><img src="Mirassol/foto2.png"></a></div>
+                </div><div class="swiper-pagination"></div></div>
                 <div class="content"><h2>Camisa Mirassol 2026 🟡</h2><p class="modelo-info">Modelo Torcedor Tailandesa</p>
                 <div class="price-area"><span class="old-price">R$ 189</span><span class="new-price">R$ 169,00</span></div><a href="https://wa.me/5591993249580" class="btn-whatsapp">Entre em contato</a></div>
             </div>
 
             <div class="card" data-name="real madrid" data-category="laliga">
-                <div class="swiper swiper-images"><div class="swiper-wrapper"><div class="swiper-slide"><img src="Real Madrid/foto1.png"></div><div class="swiper-slide"><img src="Real Madrid/foto2.png"></div></div><div class="swiper-pagination"></div></div>
+                <div class="swiper swiper-images"><div class="swiper-wrapper">
+                    <div class="swiper-slide"><a href="Real Madrid/foto1.png" data-fancybox="realmadrid"><img src="Real Madrid/foto1.png"></a></div>
+                    <div class="swiper-slide"><a href="Real Madrid/foto2.png" data-fancybox="realmadrid"><img src="Real Madrid/foto2.png"></a></div>
+                </div><div class="swiper-pagination"></div></div>
                 <div class="content"><h2>Camisa Real Madrid 2026 ⚪</h2><p class="modelo-info">Modelo Torcedor Tailandesa</p>
                 <div class="price-area"><span class="old-price">R$ 189</span><span class="new-price">R$ 169,00</span></div><a href="https://wa.me/5591993249580" class="btn-whatsapp">Entre em contato</a></div>
             </div>
 
             <div class="card" data-name="barcelona" data-category="laliga">
-                <div class="swiper swiper-images"><div class="swiper-wrapper"><div class="swiper-slide"><img src="Barcelona/foto1.png"></div><div class="swiper-slide"><img src="Barcelona/foto2.png"></div></div><div class="swiper-pagination"></div></div>
+                <div class="swiper swiper-images"><div class="swiper-wrapper">
+                    <div class="swiper-slide"><a href="Barcelona/foto1.png" data-fancybox="barcelona"><img src="Barcelona/foto1.png"></a></div>
+                    <div class="swiper-slide"><a href="Barcelona/foto2.png" data-fancybox="barcelona"><img src="Barcelona/foto2.png"></a></div>
+                </div><div class="swiper-pagination"></div></div>
                 <div class="content"><h2>Camisa Barcelona 2026 🔵🔴</h2><p class="modelo-info">Modelo Torcedor Tailandesa</p>
                 <div class="price-area"><span class="old-price">R$ 189</span><span class="new-price">R$ 169,00</span></div><a href="https://wa.me/5591993249580" class="btn-whatsapp">Entre em contato</a></div>
             </div>
 
             <div class="card" data-name="manchester city" data-category="premierleague">
-                <div class="swiper swiper-images"><div class="swiper-wrapper"><div class="swiper-slide"><img src="Manchester City/foto1.png"></div><div class="swiper-slide"><img src="Manchester City/foto2.png"></div></div><div class="swiper-pagination"></div></div>
+                <div class="swiper swiper-images"><div class="swiper-wrapper">
+                    <div class="swiper-slide"><a href="Manchester City/foto1.png" data-fancybox="mancity"><img src="Manchester City/foto1.png"></a></div>
+                    <div class="swiper-slide"><a href="Manchester City/foto2.png" data-fancybox="mancity"><img src="Manchester City/foto2.png"></a></div>
+                </div><div class="swiper-pagination"></div></div>
                 <div class="content"><h2>Camisa Man. City 2026 🏗️</h2><p class="modelo-info">Modelo Torcedor Tailandesa</p>
                 <div class="price-area"><span class="old-price">R$ 189</span><span class="new-price">R$ 169,00</span></div><a href="https://wa.me/5591993249580" class="btn-whatsapp">Entre em contato</a></div>
             </div>
 
             <div class="card" data-name="juventus" data-category="seriea">
-                <div class="swiper swiper-images"><div class="swiper-wrapper"><div class="swiper-slide"><img src="Juventus/foto1.png"></div><div class="swiper-slide"><img src="Juventus/foto2.png"></div></div><div class="swiper-pagination"></div></div>
+                <div class="swiper swiper-images"><div class="swiper-wrapper">
+                    <div class="swiper-slide"><a href="Juventus/foto1.png" data-fancybox="juventus"><img src="Juventus/foto1.png"></a></div>
+                    <div class="swiper-slide"><a href="Juventus/foto2.png" data-fancybox="juventus"><img src="Juventus/foto2.png"></a></div>
+                </div><div class="swiper-pagination"></div></div>
                 <div class="content"><h2>Camisa Juventus 2026 🦓</h2><p class="modelo-info">Modelo Torcedor Tailandesa</p>
                 <div class="price-area"><span class="old-price">R$ 189</span><span class="new-price">R$ 169,00</span></div><a href="https://wa.me/5591993249580" class="btn-whatsapp">Entre em contato</a></div>
             </div>
 
             <div class="card" data-name="psg paris saint germain" data-category="ligue1">
-                <div class="swiper swiper-images"><div class="swiper-wrapper"><div class="swiper-slide"><img src="PSG/foto1.png"></div><div class="swiper-slide"><img src="PSG/foto2.png"></div></div><div class="swiper-pagination"></div></div>
+                <div class="swiper swiper-images"><div class="swiper-wrapper">
+                    <div class="swiper-slide"><a href="PSG/foto1.png" data-fancybox="psg"><img src="PSG/foto1.png"></a></div>
+                    <div class="swiper-slide"><a href="PSG/foto2.png" data-fancybox="psg"><img src="PSG/foto2.png"></a></div>
+                </div><div class="swiper-pagination"></div></div>
                 <div class="content"><h2>Camisa PSG 2026 🗼</h2><p class="modelo-info">Modelo Torcedor Tailandesa</p>
                 <div class="price-area"><span class="old-price">R$ 189</span><span class="new-price">R$ 169,00</span></div><a href="https://wa.me/5591993249580" class="btn-whatsapp">Entre em contato</a></div>
             </div>
@@ -215,18 +288,20 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
     <script>
-        // Função para inicializar o Swiper em cada card
         function initSwipers() {
             new Swiper('.swiper-images', { 
                 loop: true, 
                 grabCursor: true,
-                pagination: { 
-                    el: '.swiper-pagination', 
-                    clickable: true 
-                } 
+                pagination: { el: '.swiper-pagination', clickable: true } 
             });
         }
+        
+        Fancybox.bind("[data-fancybox]", {
+            infinite: true,
+            Thumbs: { autoStart: false }
+        });
 
         window.onload = initSwipers;
 
