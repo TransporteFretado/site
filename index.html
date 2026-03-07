@@ -5,204 +5,210 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Club da Bola - Vitrine Oficial</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        :root { --primary-green: #25d366; --bg-gray: #f4f4f4; }
-        body { font-family: 'Roboto', sans-serif; background-color: #fff; margin: 0; padding: 0; }
+        :root { --primary-green: #25d366; --bg-gray: #f4f4f4; --dark: #121212; }
+        body { font-family: 'Roboto', sans-serif; background-color: #fff; margin: 0; padding: 0; overflow-x: hidden; }
         
-        header { 
-            background: #fff; padding: 20px 15px; 
-            display: flex; flex-direction: column; align-items: center; 
-            gap: 12px; border-bottom: 1px solid #eee;
-        }
+        /* Header & Filters */
+        header { background: #fff; padding: 20px 15px; display: flex; flex-direction: column; align-items: center; gap: 12px; border-bottom: 1px solid #eee; }
         .brand { display: flex; align-items: center; gap: 10px; }
-        .brand img { height: 35px; width: auto; }
+        .brand img { height: 35px; }
         .brand h1 { margin: 0; font-family: 'Oswald', sans-serif; font-size: 1.5rem; text-transform: uppercase; }
+        .search-wrapper, .filter-container { width: 100%; max-width: 350px; }
+        #searchInput, #categorySelect, #modelSelect { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #ddd; outline: none; margin-bottom: 8px; }
+        .filter-container { display: flex; gap: 10px; }
 
-        .search-wrapper { width: 100%; max-width: 350px; }
-        #searchInput { 
-            width: 100%; padding: 10px; border-radius: 8px; 
-            border: 1px solid #ddd; background: #fff; outline: none; box-sizing: border-box;
-        }
-
-        /* Filtros Lado a Lado */
-        .filter-container { 
-            display: flex; gap: 10px; width: 100%; max-width: 350px; 
-        }
-        .filter-wrapper { flex: 1; }
-        #categorySelect, #modelSelect { 
-            width: 100%; padding: 10px; border-radius: 8px; 
-            border: 1px solid #ddd; background: #fff; outline: none; cursor: pointer;
-        }
-
+        /* Grid de Produtos */
         .category-section { padding: 20px 0; border-bottom: 6px solid var(--bg-gray); }
         .category-header { display: flex; justify-content: space-between; align-items: center; padding: 0 15px 10px; }
-        .category-header h2 { font-size: 1rem; margin: 0; text-transform: uppercase; }
-        .view-more { font-size: 0.75rem; color: #888; text-decoration: none; }
-
+        .category-header h2 { font-size: 1rem; margin: 0; text-transform: uppercase; font-family: 'Oswald'; }
         .swiper-main { padding: 0 15px !important; }
-        .product-card { width: 170px; display: flex; flex-direction: column; }
+        .product-card { width: 170px; cursor: pointer; transition: transform 0.2s; }
+        .product-card:active { transform: scale(0.95); }
         .product-card.hidden { display: none !important; }
 
-        .img-container { 
-            width: 100%; aspect-ratio: 1/1; background: #f9f9f9; 
-            border-radius: 8px; overflow: hidden; position: relative;
-        }
-        .swiper-pics { width: 100%; height: 100%; }
-        .swiper-pics img { width: 100%; height: 100%; object-fit: contain; cursor: zoom-in; }
+        .img-container { width: 100%; aspect-ratio: 1/1; background: #f9f9f9; border-radius: 8px; overflow: hidden; }
+        .img-container img { width: 100%; height: 100%; object-fit: contain; }
 
         .card-info { padding: 10px 0; }
-        .card-info h3 { font-size: 0.8rem; margin: 0; height: 32px; overflow: hidden; color: #333; }
-        .model-text { font-size: 0.7rem; color: #999; margin: 3px 0; }
-        
-        .price-box { margin-bottom: 8px; }
-        .price-old { font-size: 0.75rem; color: #bbb; text-decoration: line-through; display: block; }
+        .card-info h3 { font-size: 0.8rem; margin: 0; color: var(--dark); }
         .price-now { font-size: 0.95rem; font-weight: bold; color: #000; }
 
-        .btn-contact { 
-            display: block; background: var(--primary-green); color: #fff; 
-            text-align: center; padding: 7px; border-radius: 4px; 
-            text-decoration: none; font-size: 0.7rem; font-weight: bold; 
+        /* MODAL DE DETALHES (Drawer) */
+        #productModal { 
+            position: fixed; top: 0; right: -100%; width: 100%; height: 100%; 
+            background: #fff; z-index: 1000; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex; flex-direction: column; 
         }
+        #productModal.active { right: 0; }
+        .modal-header { padding: 15px; display: flex; align-items: center; border-bottom: 1px solid #eee; }
+        .btn-back { background: none; border: none; font-size: 1.5rem; cursor: pointer; padding-right: 15px; }
+        
+        .modal-content { flex: 1; overflow-y: auto; padding-bottom: 100px; }
+        .modal-swiper { width: 100%; aspect-ratio: 1/1; background: #f4f4f4; }
+        .modal-details { padding: 20px; }
+        .badge-premium { background: var(--dark); color: #fff; padding: 4px 8px; font-size: 0.6rem; text-transform: uppercase; border-radius: 3px; }
+        
+        /* Tabela de Tamanhos */
+        .size-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 20px 0; }
+        .size-btn { 
+            border: 1px solid #ddd; padding: 12px 5px; text-align: center; 
+            border-radius: 5px; font-weight: bold; cursor: pointer; transition: 0.2s;
+        }
+        .size-btn.selected { background: var(--dark); color: #fff; border-color: var(--dark); }
+        
+        /* Footer Fixo do Modal */
+        .modal-footer { 
+            position: absolute; bottom: 0; left: 0; width: 100%; padding: 15px; 
+            background: #fff; border-top: 1px solid #eee; box-sizing: border-box;
+        }
+        .btn-wpp { 
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            background: #ccc; color: #fff; width: 100%; padding: 15px; 
+            border-radius: 8px; text-decoration: none; font-weight: bold; pointer-events: none;
+        }
+        .btn-wpp.active { background: var(--primary-green); pointer-events: auto; }
 
-        @media (min-width: 768px) { .product-card { width: 210px; } }
+        @media (min-width: 768px) { .product-card { width: 220px; } #productModal { width: 450px; } }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="brand">
-            <img src="logo1.png" alt="Logo">
-            <h1>Club da Bola</h1>
-        </div>
-        <div class="search-wrapper">
-            <input type="text" id="searchInput" placeholder="Qual time você procura?" onkeyup="searchAndFilter()">
-        </div>
+        <div class="brand"><img src="logo1.png"> <h1>Club da Bola</h1></div>
+        <div class="search-wrapper"><input type="text" id="searchInput" placeholder="Buscar meu time..." onkeyup="searchAndFilter()"></div>
         <div class="filter-container">
-            <div class="filter-wrapper">
-                <select id="categorySelect" onchange="searchAndFilter()">
-                    <option value="todos">Categorias</option>
-                    <option value="brasileirao">Brasileirão</option>
-                    <option value="laliga">La Liga</option>
-                    <option value="premier">Premier League</option>
-                    <option value="selecoes">Seleções</option>
-                </select>
-            </div>
-            <div class="filter-wrapper">
-                <select id="modelSelect" onchange="searchAndFilter()">
-                    <option value="todos">Modelos</option>
-                    <option value="Torcedor">Torcedor</option>
-                    <option value="Jogador">Jogador</option>
-                </select>
-            </div>
+            <select id="categorySelect" onchange="searchAndFilter()"><option value="todos">Ligas</option><option value="brasileirao">Brasileirão</option><option value="laliga">La Liga</option><option value="selecoes">Seleções</option></select>
+            <select id="modelSelect" onchange="searchAndFilter()"><option value="todos">Modelos</option><option value="Torcedor">Torcedor</option><option value="Jogador">Jogador</option></select>
         </div>
     </header>
 
     <main id="catalog">
-        <section class="category-section" data-cat="brasileirao">
-            <div class="category-header"><h2>Brasileirão</h2><a href="#" class="view-more">Ver tudo ></a></div>
-            <div class="swiper swiper-main"><div class="swiper-wrapper" id="grid-brasileirao"></div></div>
-        </section>
-        <section class="category-section" data-cat="laliga">
-            <div class="category-header"><h2>La Liga</h2><a href="#" class="view-more">Ver tudo ></a></div>
-            <div class="swiper swiper-main"><div class="swiper-wrapper" id="grid-laliga"></div></div>
-        </section>
-        <section class="category-section" data-cat="premier">
-            <div class="category-header"><h2>Premier League</h2><a href="#" class="view-more">Ver tudo ></a></div>
-            <div class="swiper swiper-main"><div class="swiper-wrapper" id="grid-premier"></div></div>
-        </section>
-        <section class="category-section" data-cat="selecoes">
-            <div class="category-header"><h2>Seleções</h2><a href="#" class="view-more">Ver tudo ></a></div>
-            <div class="swiper swiper-main"><div class="swiper-wrapper" id="grid-selecoes"></div></div>
-        </section>
+        <section class="category-section" data-cat="brasileirao"><div class="category-header"><h2>Brasileirão</h2></div><div class="swiper swiper-main"><div class="swiper-wrapper" id="grid-brasileirao"></div></div></section>
+        <section class="category-section" data-cat="laliga"><div class="category-header"><h2>Internacionais</h2></div><div class="swiper swiper-main"><div class="swiper-wrapper" id="grid-laliga"></div></div></section>
+        <section class="category-section" data-cat="selecoes"><div class="category-header"><h2>Seleções</h2></div><div class="swiper swiper-main"><div class="swiper-wrapper" id="grid-selecoes"></div></div></section>
     </main>
 
+    <div id="productModal">
+        <div class="modal-header">
+            <button class="btn-back" onclick="closeModal()">✕</button>
+            <span style="font-weight: bold; text-transform: uppercase;">Detalhes do Produto</span>
+        </div>
+        <div class="modal-content" id="modalBody">
+            </div>
+        <div class="modal-footer">
+            <a href="#" id="wppLink" class="btn-wpp">SELECIONE O TAMANHO</a>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
     <script>
         const produtos = [
             {id: 'vasco', nome: 'Vasco', cat: 'brasileirao', mod: 'Torcedor', pasta: 'Vasco'},
             {id: 'flamengo', nome: 'Flamengo', cat: 'brasileirao', mod: 'Torcedor', pasta: 'Flamengo'},
             {id: 'flamengo_jog', nome: 'Flamengo', cat: 'brasileirao', mod: 'Jogador', pasta: 'Flamengo Jogador'},
-            {id: 'palmeiras', nome: 'Palmeiras', cat: 'brasileirao', mod: 'Torcedor', pasta: 'Palmeiras'},
-            {id: 'palmeiras_jog', nome: 'Palmeiras', cat: 'brasileirao', mod: 'Jogador', pasta: 'Palmeiras Jogador'},
-            {id: 'corinthians', nome: 'Corinthians', cat: 'brasileirao', mod: 'Torcedor', pasta: 'Corinthians'},
-            {id: 'saopaulo', nome: 'São Paulo', cat: 'brasileirao', mod: 'Torcedor', pasta: 'Sao Paulo'},
-            {id: 'realmadrid', nome: 'Real Madrid', cat: 'laliga', mod: 'Jogador', pasta: 'Real Madrid Jogador'},
-            {id: 'barcelona', nome: 'Barcelona', cat: 'laliga', mod: 'Jogador', pasta: 'Barcelona Jogador'},
-            {id: 'mancity', nome: 'Manchester City', cat: 'premier', mod: 'Torcedor', pasta: 'Manchester City'},
-            {id: 'brasil', nome: 'Brasil', cat: 'selecoes', mod: 'Torcedor', pasta: 'Selecoes', f1: 'brasil1.png', f2: 'brasil2.png'},
-            {id: 'argentina', nome: 'Argentina', cat: 'selecoes', mod: 'Torcedor', pasta: 'Selecoes', f1: 'argentina1.png', f2: 'argentina2.png'},
-            {id: 'portugal', nome: 'Portugal', cat: 'selecoes', mod: 'Torcedor', pasta: 'Selecoes', f1: 'portugal1.png', f2: 'portugal2.png'}
+            {id: 'brasil', nome: 'Brasil', cat: 'selecoes', mod: 'Torcedor', pasta: 'Selecoes', f1: 'brasil1.png', f2: 'brasil2.png'}
         ];
+
+        let selectedSize = null;
+        let currentProduct = null;
 
         function render() {
             produtos.forEach(p => {
-                const f1 = p.f1 ? `${p.pasta}/${p.f1}` : `${p.pasta}/foto1.png`;
-                const f2 = p.f2 ? `${p.pasta}/${p.f2}` : `${p.pasta}/foto2.png`;
-                
-                // Lógica de Preços
-                let pDe = (p.mod === 'Jogador' || p.cat === 'selecoes') ? '209,00' : '189,00';
-                let pPor = (p.mod === 'Jogador' || p.cat === 'selecoes') ? '189,00' : '169,00';
-                
-                // Mensagem WhatsApp
-                const msg = encodeURIComponent(`Olá, quero ver mais detalhes da camisa do ${p.nome} (${p.mod}) Tailandesa.\nLink da imagem: ${window.location.origin}/${f1}`);
-                const wppLink = `https://wa.me/5591993249580?text=${msg}`;
-
+                const img = p.f1 ? `${p.pasta}/${p.f1}` : `${p.pasta}/foto1.png`;
                 const html = `
-                <div class="swiper-slide product-card" data-name="${p.nome.toLowerCase()}" data-cat="${p.cat}" data-mod="${p.mod}">
-                    <div class="img-container">
-                        <div class="swiper swiper-pics">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide"><a href="${f1}" data-fancybox="${p.id}"><img src="${f1}"></a></div>
-                                <div class="swiper-slide"><a href="${f2}" data-fancybox="${p.id}"><img src="${f2}"></a></div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="swiper-slide product-card" onclick="openModal('${p.id}')" data-name="${p.nome.toLowerCase()}" data-cat="${p.cat}" data-mod="${p.mod}">
+                    <div class="img-container"><img src="${img}"></div>
                     <div class="card-info">
-                        <h3>Camisa ${p.nome} 2026</h3>
-                        <p class="model-text">Modelo ${p.mod} Tailandesa</p>
-                        <div class="price-box">
-                            <span class="price-old">R$ ${pDe}</span>
-                            <span class="price-now">R$ ${pPor}</span>
-                        </div>
-                        <a href="${wppLink}" class="btn-contact">Entre em contato</a>
+                        <h3>Camisa ${p.nome}</h3>
+                        <p style="font-size:0.7rem; color:#888; margin: 4px 0;">Modelo ${p.mod}</p>
+                        <span class="price-now">R$ ${p.mod === 'Torcedor' ? '169,00' : '189,00'}</span>
                     </div>
                 </div>`;
                 document.getElementById(`grid-${p.cat}`).insertAdjacentHTML('beforeend', html);
             });
+            new Swiper('.swiper-main', { slidesPerView: 'auto', spaceBetween: 15, freeMode: true });
         }
 
-        render();
+        function openModal(id) {
+            currentProduct = produtos.find(p => p.id === id);
+            selectedSize = null;
+            const p = currentProduct;
+            const img1 = p.f1 ? `${p.pasta}/${p.f1}` : `${p.pasta}/foto1.png`;
+            const img2 = p.f2 ? `${p.pasta}/${p.f2}` : `${p.pasta}/foto2.png`;
+            let pDe = (p.mod === 'Jogador' || p.cat === 'selecoes') ? '209,00' : '189,00';
+            let pPor = (p.mod === 'Jogador' || p.cat === 'selecoes') ? '189,00' : '169,00';
 
-        new Swiper('.swiper-main', { slidesPerView: 'auto', spaceBetween: 15, freeMode: true });
-        new Swiper('.swiper-pics', { loop: true });
-        Fancybox.bind("[data-fancybox]", { Images: { Panzoom: { maxScale: 3 } } });
+            document.getElementById('modalBody').innerHTML = `
+                <div class="swiper modal-swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide"><img src="${img1}" style="width:100%"></div>
+                        <div class="swiper-slide"><img src="${img2}" style="width:100%"></div>
+                    </div>
+                </div>
+                <div class="modal-details">
+                    <span class="badge-premium">Tailandesa 1:1 Premium</span>
+                    <h2 style="margin: 10px 0 5px; font-family:'Oswald'">${p.nome.toUpperCase()} - 2026</h2>
+                    <p style="color:#666; margin:0">Modelo ${p.mod} - Tecido Respirável</p>
+                    <div style="margin: 15px 0">
+                        <span style="text-decoration:line-through; color:#999; font-size:0.9rem">R$ ${pDe}</span><br>
+                        <span style="font-size:1.5rem; font-weight:bold; color:var(--dark)">R$ ${pPor}</span>
+                        <p style="font-size:0.8rem; color:var(--primary-green)">Frete Grátis Adiclub</p>
+                    </div>
+                    <hr border="0" style="border-top:1px solid #eee">
+                    <p style="font-weight:bold; margin-top:20px">SELECIONE O TAMANHO</p>
+                    <div class="size-grid">
+                        <div class="size-btn" onclick="selectSize(this, 'P')">P</div>
+                        <div class="size-btn" onclick="selectSize(this, 'M')">M</div>
+                        <div class="size-btn" onclick="selectSize(this, 'G')">G</div>
+                        <div class="size-btn" onclick="selectSize(this, 'GG')">GG</div>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('productModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            new Swiper('.modal-swiper', { loop: true });
+            updateWppBtn();
+        }
+
+        function selectSize(btn, size) {
+            document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+            selectedSize = size;
+            updateWppBtn();
+        }
+
+        function updateWppBtn() {
+            const btn = document.getElementById('wppLink');
+            if (selectedSize) {
+                btn.classList.add('active');
+                btn.innerHTML = `PEDIR AGORA (TAMANHO ${selectedSize})`;
+                const msg = encodeURIComponent(`Olá! Quero detalhes da camisa do ${currentProduct.nome} (${currentProduct.mod}), Tamanho ${selectedSize}.\nFoto: ${window.location.origin}/${currentProduct.pasta}/foto1.png`);
+                btn.href = `https://wa.me/5591993249580?text=${msg}`;
+            } else {
+                btn.classList.remove('active');
+                btn.innerHTML = "SELECIONE O TAMANHO";
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('productModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
 
         function searchAndFilter() {
             const term = document.getElementById('searchInput').value.toLowerCase();
             const selCat = document.getElementById('categorySelect').value;
             const selMod = document.getElementById('modelSelect').value;
-            const cards = document.querySelectorAll('.product-card');
-
-            cards.forEach(card => {
-                const matchesSearch = card.dataset.name.includes(term);
-                const matchesCat = (selCat === 'todos' || card.dataset.cat === selCat);
-                const matchesMod = (selMod === 'todos' || card.dataset.mod === selMod);
-
-                if (matchesSearch && matchesCat && matchesMod) {
-                    card.classList.remove('hidden');
-                } else {
-                    card.classList.add('hidden');
-                }
-            });
-
-            document.querySelectorAll('.category-section').forEach(section => {
-                const visible = section.querySelectorAll('.product-card:not(.hidden)');
-                section.style.display = visible.length > 0 ? 'block' : 'none';
+            document.querySelectorAll('.product-card').forEach(card => {
+                const match = card.dataset.name.includes(term) && (selCat === 'todos' || card.dataset.cat === selCat) && (selMod === 'todos' || card.dataset.mod === selMod);
+                card.classList.toggle('hidden', !match);
             });
         }
+
+        render();
     </script>
 </body>
 </html>
